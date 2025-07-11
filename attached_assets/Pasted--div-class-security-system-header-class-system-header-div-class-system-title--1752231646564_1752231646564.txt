@@ -1,0 +1,129 @@
+<div class="security-system">
+  <header class="system-header">
+    <div class="system-title">
+      <h1><span class="glitch-text">SENTINEL</span></h1>
+      <div class="subtitle">ADVANCED SURVEILLANCE SYSTEM / STATUS: <span class="status-alert">COMPROMISED</span></div>
+    </div>
+    <div class="status-panel">
+      <div class="status-item">
+        <span class="status-label">UPTIME:</span>
+        <span class="status-value" id="uptime-display">23:14:58</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">TIME:</span>
+        <span class="status-value" id="time-display">00:00:00</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="camera-grid">
+    <div class="camera-feed" id="camera1">
+      <div class="camera-header">
+        <span class="camera-id">CAM_01</span>
+        <span class="camera-status">LIVE</span>
+      </div>
+      <div class="camera-content">
+        <video muted loop playsinline class="camera-video" id="video1"></video>
+        <div class="scan-line"></div>
+        <div class="noise-overlay"></div>
+        <div class="glitch-overlay"></div>
+        <div class="color-distortion"></div>
+      </div>
+      <div class="camera-footer">MAIN ENTRANCE</div>
+    </div>
+
+    <div class="camera-feed" id="camera2">
+      <div class="camera-header">
+        <span class="camera-id">CAM_02</span>
+        <span class="camera-status">LIVE</span>
+      </div>
+      <div class="camera-content">
+        <video muted loop playsinline class="camera-video" id="video2"></video>
+        <div class="scan-line"></div>
+        <div class="noise-overlay"></div>
+        <div class="glitch-overlay"></div>
+        <div class="color-distortion"></div>
+      </div>
+      <div class="camera-footer">RECEPTION</div>
+    </div>
+
+    <div class="camera-feed" id="camera3">
+      <div class="camera-header">
+        <span class="camera-id">CAM_03</span>
+        <span class="camera-status offline">OFFLINE</span>
+      </div>
+      <div class="camera-content">
+        <video muted loop playsinline class="camera-video" id="video3"></video>
+        <div class="scan-line"></div>
+        <div class="noise-overlay"></div>
+        <div class="glitch-overlay"></div>
+        <div class="color-distortion"></div>
+      </div>
+      <div class="camera-footer">HALLWAY</div>
+    </div>
+
+    <div class="camera-feed" id="camera4">
+      <div class="camera-header">
+        <span class="camera-id">CAM_04</span>
+        <span class="camera-status">LIVE</span>
+      </div>
+      <div class="camera-content">
+        <video muted loop playsinline class="camera-video" id="video4"></video>
+        <div class="scan-line"></div>
+        <div class="noise-overlay"></div>
+        <div class="glitch-overlay"></div>
+        <div class="color-distortion"></div>
+      </div>
+      <div class="camera-footer">SERVER ROOM</div>
+    </div>
+
+    <div class="camera-feed" id="camera5">
+      <div class="camera-header">
+        <span class="camera-id">CAM_05</span>
+        <span class="camera-status offline">OFFLINE</span>
+      </div>
+      <div class="camera-content">
+        <video muted loop playsinline class="camera-video" id="video5"></video>
+        <div class="scan-line"></div>
+        <div class="noise-overlay"></div>
+        <div class="glitch-overlay"></div>
+        <div class="color-distortion"></div>
+      </div>
+      <div class="camera-footer">PARKING</div>
+    </div>
+
+    <div class="camera-feed" id="camera6">
+      <div class="camera-header">
+        <span class="camera-id">CAM_06</span>
+        <span class="camera-status">LIVE</span>
+      </div>
+      <div class="camera-content">
+        <video muted loop playsinline class="camera-video" id="video6"></video>
+        <div class="scan-line"></div>
+        <div class="noise-overlay"></div>
+        <div class="glitch-overlay"></div>
+        <div class="color-distortion"></div>
+      </div>
+      <div class="camera-footer">LOBBY</div>
+    </div>
+  </div>
+
+  <div class="control-panel">
+    <div class="log-terminal">
+      <div class="terminal-header">SYSTEM LOG</div>
+      <div class="terminal-content" id="log-content">
+        > SECURITY SYSTEM INITIALIZED<br>
+        > CONNECTED TO MAIN SERVER<br>
+        > WARNING: UNAUTHORIZED ACCESS ATTEMPTS DETECTED<br>
+        > SYSTEM INTEGRITY: 68%<br>
+        > APPLYING SECURITY PROTOCOLS...
+      </div>
+    </div>
+    <div class="controls">
+      <button id="toggle-grid" class="control-btn">GRID VIEW</button>
+      <button id="reset-system" class="control-btn">RESET SYSTEM</button>
+      <button id="trigger-glitch" class="control-btn">FORCE GLITCH</button>
+      <button id="toggle-filter" class="control-btn">TOGGLE FILTER</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+
+DOMException {}
+
+Warning: Received &#x60;true&#x60; for a non-boolean attribute &#x60;jsx&#x60;.
+
+If you want to write it to the DOM, pass a string instead: jsx=&quot;true&quot; or jsx={value.toString()}.
+    at style
+    at div
+    at ThreatMap (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/src/components/dashboard/threat-map.tsx:21:18)
+    at div
+    at div
+    at div
+    at div
+    at div
+    at SOCDashboard (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/src/pages/soc-dashboard.tsx:35:37)
+    at Route (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=bcd21a8d:323:16)
+    at Switch (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=bcd21a8d:379:17)
+    at Router
+    at Provider (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-36KQHZHN.js?v=bcd21a8d:28:15)
+    at TooltipProvider (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=bcd21a8d:56:5)
+    at App
+DOMException {}
+
+The above error occurred in the <div> component:
+
+    at div
+    at div
+    at div
+    at ThreatMap (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/src/components/dashboard/threat-map.tsx:21:18)
+    at div
+    at div
+    at div
+    at div
+    at div
+    at SOCDashboard (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/src/pages/soc-dashboard.tsx:35:37)
+    at Route (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=bcd21a8d:323:16)
+    at Switch (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=bcd21a8d:379:17)
+    at Router
+    at Provider (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-36KQHZHN.js?v=bcd21a8d:28:15)
+    at TooltipProvider (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=bcd21a8d:56:5)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+DOMException {}
+stack: "NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.↵ at removeChild (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:8456:26)↵ at commitDeletionEffectsOnFiber (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17510:21)↵ at commitDeletionEffects (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17477:13)↵ at recursivelyTraverseMutationEffects (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17674:17)↵ at commitMutationEffectsOnFiber (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17737:15)↵ at recursivelyTraverseMutationEffects (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17685:15)↵ at commitMutationEffectsOnFiber (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17737:15)↵ at recursivelyTraverseMutationEffects (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17685:15)↵ at commitMutationEffectsOnFiber (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17699:15)↵ at recursivelyTraverseMutationEffects (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WERSD76P.js?v=bcd21a8d:17685:15)"
+get stack: ƒ ()
+set stack: ƒ ()
+[[Prototype]]: DOMException

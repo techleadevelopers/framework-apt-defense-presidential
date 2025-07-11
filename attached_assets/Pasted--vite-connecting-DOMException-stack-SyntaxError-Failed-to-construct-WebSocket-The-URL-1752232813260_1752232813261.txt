@@ -1,0 +1,26 @@
+[vite] connecting...
+DOMException {}
+stack: "SyntaxError: Failed to construct 'WebSocket': The URL 'wss://localhost:undefined/?token=7zi_dvPHfYh2' is invalid.↵ at new t (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:218737)↵ at setupWebSocket (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@vite/client:536:19)↵ at fallback (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@vite/client:509:16)↵ at WebSocket.<anonymous> (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@vite/client:555:7)"
+get stack: ƒ ()
+set stack: ƒ ()
+[[Prototype]]: DOMException
+
+updateThreatMutation is not defined
+updateThreatMutation is not defined
+The above error occurred in the <ThreatList> component:
+
+    at ThreatList (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/src/components/threats/threat-list.tsx:24:51)
+    at div
+    at div
+    at div
+    at SOCDashboard (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/src/pages/soc-dashboard.tsx:35:37)
+    at Route (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=bcd21a8d:323:16)
+    at Switch (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=bcd21a8d:379:17)
+    at Router
+    at Provider (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-36KQHZHN.js?v=bcd21a8d:28:15)
+    at TooltipProvider (https://2f91a845-debc-4321-9813-61eb0a7c4894-00-tlxr7dyhlhbc.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=bcd21a8d:56:5)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+updateThreatMutation is not defined
