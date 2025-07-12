@@ -1354,6 +1354,325 @@ const detailedCourses: DetailedCourse[] = [
         ]
       }
     ]
+  },
+  {
+    id: '9',
+    title: 'Enterprise SOC Operations & Management',
+    description: 'Complete enterprise-level SOC management, team leadership, strategic planning, and global operations coordination.',
+    level: 'advanced',
+    duration: '28 hours',
+    totalModules: 20,
+    enrolled: 156,
+    rating: 4.9,
+    category: 'SOC Management',
+    instructor: 'Dr. Robert Kim, CISSP, CISO',
+    certification: 'Enterprise SOC Manager',
+    prerequisites: ['SOC analyst experience 3+ years', 'Team leadership experience', 'Business management basics'],
+    learningObjectives: [
+      'Design enterprise SOC architecture',
+      'Manage global SOC operations',
+      'Develop SOC maturity programs',
+      'Lead cross-functional security teams'
+    ],
+    modules: [
+      {
+        id: '9-1',
+        title: 'SOC Strategic Planning & Architecture',
+        duration: '120 min',
+        description: 'Enterprise SOC design and strategic alignment',
+        content: [
+          'SOC Business Case Development',
+          'Enterprise SOC Architecture Design',
+          'Multi-Tiered SOC Models (L1/L2/L3)',
+          'Global SOC Network Strategy',
+          'Technology Stack Selection',
+          'ROI and Metrics Framework'
+        ],
+        exercises: [
+          'Design enterprise SOC architecture',
+          'Create SOC business case presentation',
+          'Develop 3-year SOC roadmap'
+        ]
+      },
+      {
+        id: '9-2',
+        title: 'SOC Team Management & Leadership',
+        duration: '110 min',
+        description: 'Leading and developing high-performance SOC teams',
+        content: [
+          'SOC Organizational Structure',
+          'Hiring and Talent Acquisition',
+          'Skills Development Programs',
+          'Performance Management',
+          'Career Progression Paths',
+          'Team Culture and Morale'
+        ],
+        exercises: [
+          'Create SOC org chart and job descriptions',
+          'Design analyst development program',
+          'Implement performance metrics'
+        ]
+      },
+      {
+        id: '9-3',
+        title: 'SOC Maturity Assessment & Improvement',
+        duration: '100 min',
+        description: 'Evaluating and advancing SOC capabilities',
+        content: [
+          'SOC Maturity Models (CMMI, NIST)',
+          'Capability Assessment Methods',
+          'Gap Analysis and Prioritization',
+          'Improvement Planning',
+          'Change Management',
+          'Continuous Improvement Process'
+        ],
+        exercises: [
+          'Conduct SOC maturity assessment',
+          'Create capability improvement plan',
+          'Design change management strategy'
+        ]
+      }
+    ]
+  },
+  {
+    id: '10',
+    title: 'Global Compliance & Risk Management',
+    description: 'Master international cybersecurity regulations, compliance frameworks, and enterprise risk management across jurisdictions.',
+    level: 'advanced',
+    duration: '24 hours',
+    totalModules: 16,
+    enrolled: 289,
+    rating: 4.8,
+    category: 'Compliance & Risk',
+    instructor: 'Elena Martinez, JD, CRISC, CISA',
+    certification: 'Global Compliance Specialist',
+    prerequisites: ['Risk management basics', 'Legal fundamentals', 'Audit experience'],
+    learningObjectives: [
+      'Navigate global compliance landscape',
+      'Implement multi-framework compliance',
+      'Manage enterprise-wide risk programs',
+      'Lead regulatory audit processes'
+    ],
+    modules: [
+      {
+        id: '10-1',
+        title: 'Global Regulatory Landscape',
+        duration: '90 min',
+        description: 'Understanding international cybersecurity regulations',
+        content: [
+          'GDPR (European Union)',
+          'CCPA/CPRA (California)',
+          'LGPD (Brazil)',
+          'PIPEDA (Canada)',
+          'Cybersecurity Law (China)',
+          'Cross-Border Data Transfer Rules'
+        ],
+        exercises: [
+          'Create global compliance matrix',
+          'Analyze cross-border data flows',
+          'Design privacy impact assessment'
+        ]
+      },
+      {
+        id: '10-2',
+        title: 'Enterprise Framework Integration',
+        duration: '105 min',
+        description: 'Implementing multiple compliance frameworks',
+        content: [
+          'ISO 27001/27002 Implementation',
+          'NIST Cybersecurity Framework',
+          'SOC 2 Type II Controls',
+          'PCI DSS Requirements',
+          'COBIT Governance',
+          'Framework Mapping and Integration'
+        ],
+        exercises: [
+          'Map controls across frameworks',
+          'Create integrated control matrix',
+          'Design audit coordination plan'
+        ]
+      }
+    ]
+  },
+  {
+    id: '11',
+    title: 'AI/ML Security & Adversarial Attacks',
+    description: 'Cutting-edge course on AI/ML security vulnerabilities, adversarial attacks, model poisoning, and AI-powered defense systems.',
+    level: 'advanced',
+    duration: '26 hours',
+    totalModules: 18,
+    enrolled: 412,
+    rating: 4.9,
+    category: 'AI Security',
+    instructor: 'Dr. Aisha Patel, AI Security Researcher',
+    certification: 'AI Security Specialist',
+    prerequisites: ['Machine learning basics', 'Python programming', 'Statistics fundamentals'],
+    learningObjectives: [
+      'Understand AI/ML attack vectors',
+      'Implement adversarial defenses',
+      'Secure AI/ML pipelines',
+      'Develop AI-powered security tools'
+    ],
+    modules: [
+      {
+        id: '11-1',
+        title: 'AI/ML Security Fundamentals',
+        duration: '95 min',
+        description: 'Core concepts in AI/ML security',
+        content: [
+          'AI/ML Threat Landscape',
+          'Model Vulnerabilities',
+          'Training Data Security',
+          'Inference Attack Types',
+          'Privacy-Preserving ML',
+          'Regulatory Considerations'
+        ],
+        exercises: [
+          'Assess AI system vulnerabilities',
+          'Design secure ML pipeline',
+          'Implement privacy controls'
+        ]
+      },
+      {
+        id: '11-2',
+        title: 'Adversarial Attacks & Defenses',
+        duration: '120 min',
+        description: 'Advanced adversarial machine learning techniques',
+        content: [
+          'FGSM and PGD Attacks',
+          'C&W and Carlini Attacks',
+          'Adversarial Training',
+          'Defensive Distillation',
+          'Detection Mechanisms',
+          'Robustness Evaluation'
+        ],
+        exercises: [
+          'Implement adversarial attacks',
+          'Build robust defense mechanisms',
+          'Evaluate model robustness'
+        ]
+      }
+    ]
+  },
+  {
+    id: '12',
+    title: 'Zero Trust Architecture Implementation',
+    description: 'Comprehensive zero trust architecture design, implementation, and management for enterprise environments.',
+    level: 'advanced',
+    duration: '22 hours',
+    totalModules: 15,
+    enrolled: 378,
+    rating: 4.8,
+    category: 'Zero Trust',
+    instructor: 'James Wilson, Zero Trust Architect',
+    certification: 'Zero Trust Implementation Expert',
+    prerequisites: ['Network security fundamentals', 'Identity management', 'Cloud architecture'],
+    learningObjectives: [
+      'Design zero trust architecture',
+      'Implement identity-centric security',
+      'Manage micro-segmentation',
+      'Deploy continuous verification'
+    ],
+    modules: [
+      {
+        id: '12-1',
+        title: 'Zero Trust Principles & Strategy',
+        duration: '100 min',
+        description: 'Foundation of zero trust security model',
+        content: [
+          'Zero Trust Core Principles',
+          'Traditional vs Zero Trust Models',
+          'Architecture Components',
+          'Implementation Strategy',
+          'Business Case Development',
+          'Maturity Assessment'
+        ],
+        exercises: [
+          'Assess current security posture',
+          'Design zero trust strategy',
+          'Create implementation roadmap'
+        ]
+      },
+      {
+        id: '12-2',
+        title: 'Identity-Centric Security',
+        duration: '95 min',
+        description: 'Advanced identity and access management',
+        content: [
+          'Identity Verification Systems',
+          'Multi-Factor Authentication',
+          'Privileged Access Management',
+          'Identity Governance',
+          'Behavioral Analytics',
+          'Risk-Based Authentication'
+        ],
+        exercises: [
+          'Implement MFA strategies',
+          'Design PAM architecture',
+          'Configure risk-based access'
+        ]
+      }
+    ]
+  },
+  {
+    id: '13',
+    title: 'Cyber Threat Intelligence Operations',
+    description: 'Advanced threat intelligence collection, analysis, production, and dissemination for enterprise security operations.',
+    level: 'advanced',
+    duration: '25 hours',
+    totalModules: 17,
+    enrolled: 267,
+    rating: 4.9,
+    category: 'Threat Intelligence',
+    instructor: 'Marcus Chen, CTI Lead Analyst',
+    certification: 'Threat Intelligence Professional',
+    prerequisites: ['Intelligence analysis basics', 'OSINT techniques', 'Data analysis skills'],
+    learningObjectives: [
+      'Develop strategic threat intelligence',
+      'Manage intelligence operations',
+      'Create actionable intelligence products',
+      'Lead threat hunting initiatives'
+    ],
+    modules: [
+      {
+        id: '13-1',
+        title: 'Intelligence Requirements & Planning',
+        duration: '85 min',
+        description: 'Strategic intelligence planning and requirements',
+        content: [
+          'Intelligence Requirements Development',
+          'Collection Planning Process',
+          'Stakeholder Management',
+          'Priority Intelligence Requirements',
+          'Collection Management Framework',
+          'Resource Allocation'
+        ],
+        exercises: [
+          'Develop PIRs for organization',
+          'Create collection plan',
+          'Design stakeholder engagement'
+        ]
+      },
+      {
+        id: '13-2',
+        title: 'Advanced OSINT Operations',
+        duration: '110 min',
+        description: 'Professional open source intelligence techniques',
+        content: [
+          'Advanced Search Techniques',
+          'Social Media Intelligence',
+          'Dark Web Monitoring',
+          'Technical Infrastructure Analysis',
+          'Attribution Methodologies',
+          'OSINT Tool Development'
+        ],
+        exercises: [
+          'Conduct advanced OSINT investigation',
+          'Build custom collection tools',
+          'Perform attribution analysis'
+        ]
+      }
+    ]
   }
 ];
 
@@ -1431,6 +1750,69 @@ const mockAchievements: Achievement[] = [
     earned: false,
     points: 1500,
     rarity: 'legendary'
+  },
+  {
+    id: '9',
+    title: 'Enterprise SOC Leader',
+    description: 'Successfully design and implement enterprise SOC architecture',
+    icon: 'users',
+    earned: false,
+    points: 2000,
+    rarity: 'legendary'
+  },
+  {
+    id: '10',
+    title: 'Global Compliance Master',
+    description: 'Achieve compliance across 5+ international frameworks',
+    icon: 'shield',
+    earned: false,
+    points: 1800,
+    rarity: 'legendary'
+  },
+  {
+    id: '11',
+    title: 'AI Security Pioneer',
+    description: 'Discover and mitigate 3 novel AI/ML vulnerabilities',
+    icon: 'zap',
+    earned: false,
+    points: 2500,
+    rarity: 'legendary'
+  },
+  {
+    id: '12',
+    title: 'Zero Trust Architect',
+    description: 'Design and deploy enterprise zero trust architecture',
+    icon: 'lock',
+    earned: false,
+    points: 2200,
+    rarity: 'legendary'
+  },
+  {
+    id: '13',
+    title: 'Threat Intelligence Guru',
+    description: 'Lead 10+ strategic intelligence operations',
+    icon: 'target',
+    earned: false,
+    points: 1900,
+    rarity: 'legendary'
+  },
+  {
+    id: '14',
+    title: 'Executive Briefing Expert',
+    description: 'Successfully brief C-level executives on cyber risks',
+    icon: 'presentation',
+    earned: false,
+    points: 1600,
+    rarity: 'epic'
+  },
+  {
+    id: '15',
+    title: 'Global SOC Orchestrator',
+    description: 'Coordinate security operations across 3+ time zones',
+    icon: 'globe',
+    earned: false,
+    points: 2800,
+    rarity: 'legendary'
   }
 ];
 
@@ -1464,6 +1846,56 @@ const mockCertifications: Certification[] = [
     duration: '18 months',
     earned: false,
     progress: 0
+  },
+  {
+    id: '4',
+    name: 'Enterprise SOC Manager',
+    issuer: 'Global SOC Consortium',
+    level: 'Executive',
+    requirements: ['5+ years SOC experience', 'Complete SOC management track', 'Lead enterprise SOC design'],
+    duration: '24 months',
+    earned: false,
+    progress: 0
+  },
+  {
+    id: '5',
+    name: 'Global Compliance Specialist',
+    issuer: 'International Compliance Institute',
+    level: 'Expert',
+    requirements: ['Multi-framework experience', 'Complete compliance track', 'Lead 3 audit processes'],
+    duration: '18 months',
+    earned: false,
+    progress: 0
+  },
+  {
+    id: '6',
+    name: 'AI Security Professional',
+    issuer: 'AI Security Research Consortium',
+    level: 'Specialist',
+    requirements: ['ML fundamentals', 'Complete AI security track', 'Publish research paper'],
+    duration: '15 months',
+    earned: false,
+    progress: 0
+  },
+  {
+    id: '7',
+    name: 'Zero Trust Architect',
+    issuer: 'Zero Trust Alliance',
+    level: 'Architect',
+    requirements: ['Enterprise architecture experience', 'Complete ZT track', 'Design enterprise implementation'],
+    duration: '20 months',
+    earned: false,
+    progress: 0
+  },
+  {
+    id: '8',
+    name: 'Threat Intelligence Professional',
+    issuer: 'Global CTI Certification Board',
+    level: 'Professional',
+    requirements: ['Intelligence analysis background', 'Complete CTI track', 'Lead intelligence operation'],
+    duration: '16 months',
+    earned: false,
+    progress: 0
   }
 ];
 
@@ -1493,7 +1925,7 @@ export default function LearningCenter() {
     mentorshipHours: 8
   });
 
-  const categories = ["all", "Fundamentals", "Threat Hunting", "Frameworks", "Incident Response", "Penetration Testing", "Cloud Security", "Blockchain Security", "Future Threats"];
+  const categories = ["all", "Fundamentals", "Threat Hunting", "Frameworks", "Incident Response", "Penetration Testing", "Cloud Security", "Blockchain Security", "Future Threats", "SOC Management", "Compliance & Risk", "AI Security", "Zero Trust", "Threat Intelligence"];
   const levels = ["all", "beginner", "intermediate", "advanced"];
 
   const filteredCourses = detailedCourses.filter(course => {
@@ -1514,13 +1946,24 @@ export default function LearningCenter() {
 
   // Weekly challenges
   const weeklyChallenge = {
-    title: "DeFi Flash Loan Attack Analysis",
-    description: "Analyze the recent $100M flash loan attack on a major DeFi protocol and create defensive strategies",
-    difficulty: "Advanced",
-    points: 750,
-    timeRemaining: "4 days",
-    participants: 3247,
-    completed: 89
+    title: "Enterprise Zero Trust Architecture Challenge",
+    description: "Design a comprehensive zero trust implementation for a multinational corporation with 50,000+ employees across 25 countries",
+    difficulty: "Enterprise",
+    points: 1500,
+    timeRemaining: "6 days",
+    participants: 1847,
+    completed: 23
+  };
+
+  // Monthly enterprise challenge
+  const monthlyChallenge = {
+    title: "Global SOC Integration Simulation",
+    description: "Lead a complex simulation coordinating 5 regional SOCs responding to a coordinated APT campaign across multiple time zones",
+    difficulty: "Executive",
+    points: 3000,
+    timeRemaining: "18 days",
+    participants: 892,
+    completed: 7
   };
 
   const blockchainChallenges = [
@@ -2242,55 +2685,6 @@ export default function LearningCenter() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="leaderboard" className="space-y-6">
-          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
-            <CardHeader>
-              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Global Leaderboard</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {[
-                  { rank: 1, name: 'Alex Chen', points: 8750, level: 24, badge: 'Expert Analyst' },
-                  { rank: 2, name: 'Sarah Wilson', points: 7420, level: 21, badge: 'Threat Hunter' },
-                  { rank: 3, name: 'Mike Johnson', points: 6890, level: 19, badge: 'SOC Specialist' },
-                  { rank: 4, name: 'Emma Davis', points: 6234, level: 18, badge: 'Incident Responder' },
-                  { rank: 5, name: 'You', points: userProgress.totalPoints, level: userProgress.level, badge: 'SOC Analyst', highlight: true },
-                  { rank: 6, name: 'David Brown', points: 2456, level: 11, badge: 'Security Analyst' },
-                  { rank: 7, name: 'Lisa Garcia', points: 2103, level: 10, badge: 'Junior Analyst' }
-                ].map((user) => (
-                  <div 
-                    key={user.rank} 
-                    className={`flex items-center justify-between p-3 rounded-lg ${
-                      user.highlight 
-                        ? 'bg-[var(--cyber-cyan)]/20 border border-[var(--cyber-cyan)]/30' 
-                        : 'bg-[var(--cyber-dark)]/30'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-                        user.rank <= 3 ? 'bg-yellow-400 text-[var(--cyber-dark)]' : 'bg-[var(--cyber-steel)] text-white'
-                      }`}>
-                        {user.rank}
-                      </div>
-                      <div>
-                        <div className={`font-medium ${user.highlight ? 'text-[var(--cyber-cyan)]' : 'text-white'}`}>
-                          {user.name}
-                        </div>
-                        <div className="text-sm text-gray-400">{user.badge}</div>
-                      </div>
-                    </div>
-                    
-                    <div className="text-right">
-                      <div className="font-bold text-white">{user.points.toLocaleString()} pts</div>
-                      <div className="text-sm text-gray-400">Level {user.level}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
         {/* Leaderboard Tab */}
         <TabsContent value="leaderboard" className="space-y-6">
           <Card className="glass-panel border-[var(--cyber-cyan)]/30">
@@ -2395,6 +2789,163 @@ export default function LearningCenter() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Enterprise Challenges Section */}
+          <div className="space-y-6">
+            <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+              <CardHeader>
+                <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Active Enterprise Challenges</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* Weekly Challenge */}
+                  <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-6 bg-gradient-to-r from-[var(--cyber-dark)]/50 to-[var(--cyber-navy)]/30">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                            Weekly Challenge
+                          </Badge>
+                          <Badge className="bg-orange-500/20 text-orange-400 border-orange-500/30">
+                            {weeklyChallenge.difficulty}
+                          </Badge>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">{weeklyChallenge.title}</h3>
+                        <p className="text-gray-300 mb-4">{weeklyChallenge.description}</p>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                          <div className="flex items-center space-x-2">
+                            <Trophy className="w-4 h-4 text-[var(--cyber-cyan)]" />
+                            <span className="text-gray-300">{weeklyChallenge.points} points</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Clock className="w-4 h-4 text-[var(--cyber-cyan)]" />
+                            <span className="text-gray-300">{weeklyChallenge.timeRemaining}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Users className="w-4 h-4 text-[var(--cyber-cyan)]" />
+                            <span className="text-gray-300">{weeklyChallenge.participants} participants</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <CheckCircle className="w-4 h-4 text-green-400" />
+                            <span className="text-gray-300">{weeklyChallenge.completed} completed</span>
+                          </div>
+                        </div>
+                      </div>
+                      <Button className="bg-[var(--cyber-cyan)] hover:bg-[var(--cyber-cyan)]/80 text-[var(--cyber-dark)] ml-4">
+                        Join Challenge
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Monthly Challenge */}
+                  <div className="border border-purple-500/30 rounded-lg p-6 bg-gradient-to-r from-purple-900/20 to-[var(--cyber-dark)]/50">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
+                            Monthly Challenge
+                          </Badge>
+                          <Badge className="bg-red-500/20 text-red-400 border-red-500/30">
+                            {monthlyChallenge.difficulty}
+                          </Badge>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">{monthlyChallenge.title}</h3>
+                        <p className="text-gray-300 mb-4">{monthlyChallenge.description}</p>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                          <div className="flex items-center space-x-2">
+                            <Trophy className="w-4 h-4 text-purple-400" />
+                            <span className="text-gray-300">{monthlyChallenge.points} points</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Clock className="w-4 h-4 text-purple-400" />
+                            <span className="text-gray-300">{monthlyChallenge.timeRemaining}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Users className="w-4 h-4 text-purple-400" />
+                            <span className="text-gray-300">{monthlyChallenge.participants} participants</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <CheckCircle className="w-4 h-4 text-green-400" />
+                            <span className="text-gray-300">{monthlyChallenge.completed} completed</span>
+                          </div>
+                        </div>
+                      </div>
+                      <Button className="bg-purple-500 hover:bg-purple-500/80 text-white ml-4">
+                        Join Challenge
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Training Simulations */}
+            <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+              <CardHeader>
+                <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Enterprise Training Simulations</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                    <h3 className="font-semibold text-white mb-2">Fortune 500 SOC Simulation</h3>
+                    <p className="text-sm text-gray-400 mb-3">Lead a 24/7 global SOC operation for a multinational corporation</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3 text-sm text-gray-300">
+                        <span>⏱️ 8 hours</span>
+                        <span>🏢 Enterprise</span>
+                        <span>🌐 Global</span>
+                      </div>
+                      <Button size="sm" className="bg-[var(--cyber-cyan)] text-[var(--cyber-dark)]">
+                        Start Simulation
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                    <h3 className="font-semibold text-white mb-2">Critical Infrastructure Defense</h3>
+                    <p className="text-sm text-gray-400 mb-3">Protect power grid and transportation systems from nation-state attacks</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3 text-sm text-gray-300">
+                        <span>⏱️ 12 hours</span>
+                        <span>🔒 Top Secret</span>
+                        <span>🛡️ Critical</span>
+                      </div>
+                      <Button size="sm" className="bg-red-500 text-white">
+                        Access Required
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                    <h3 className="font-semibold text-white mb-2">Global Compliance Audit</h3>
+                    <p className="text-sm text-gray-400 mb-3">Navigate complex international regulations across 15 jurisdictions</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3 text-sm text-gray-300">
+                        <span>⏱️ 6 hours</span>
+                        <span>📋 Compliance</span>
+                        <span>🌍 Multi-Region</span>
+                      </div>
+                      <Button size="sm" className="bg-[var(--cyber-cyan)] text-[var(--cyber-dark)]">
+                        Begin Audit
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                    <h3 className="font-semibold text-white mb-2">AI Security Lab</h3>
+                    <p className="text-sm text-gray-400 mb-3">Secure ML models and defend against adversarial attacks</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3 text-sm text-gray-300">
+                        <span>⏱️ 4 hours</span>
+                        <span>🤖 AI/ML</span>
+                        <span>🔬 Research</span>
+                      </div>
+                      <Button size="sm" className="bg-purple-500 text-white">
+                        Enter Lab
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>

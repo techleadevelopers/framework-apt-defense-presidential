@@ -1,4 +1,4 @@
-import { Shield, Gauge, AlertTriangle, Network, Play, Brain, Bot, Eye, GraduationCap, Globe } from "lucide-react";
+import { Shield, Gauge, AlertTriangle, Network, Play, Brain, Bot, Eye, GraduationCap, Globe, BookOpen, Terminal, FileText, Bug, Server, Workflow, ClipboardCheck } from "lucide-react";
 import { TabType } from "@/pages/soc-dashboard";
 
 interface SidebarProps {
@@ -8,13 +8,19 @@ interface SidebarProps {
 
 const navigationItems = [
   { id: "dashboard" as TabType, label: "Dashboard", icon: Gauge },
+  { id: "incidents" as TabType, label: "Incident Response", icon: FileText },
   { id: "threats" as TabType, label: "Threat Detection", icon: AlertTriangle },
+  { id: "vulnerabilities" as TabType, label: "Vulnerabilities", icon: Bug },
+  { id: "assets" as TabType, label: "Asset Management", icon: Server },
   { id: "scanner" as TabType, label: "Network Scanner", icon: Network },
+  { id: "automation" as TabType, label: "SOAR Automation", icon: Workflow },
   { id: "simulation" as TabType, label: "Attack Simulation", icon: Play },
   { id: "intelligence" as TabType, label: "Threat Intelligence", icon: Brain },
   { id: "ai-analysis" as TabType, label: "ML/AI Analysis", icon: Bot },
   { id: "sentinel" as TabType, label: "SENTINEL System", icon: Eye },
+  { id: "compliance" as TabType, label: "Compliance", icon: ClipboardCheck },
   { id: "learning" as TabType, label: "Learning Center", icon: GraduationCap },
+  { id: "manual" as TabType, label: "Manual", icon: BookOpen },
   { id: "real-api" as TabType, label: "Real API Integration", icon: Globe },
 ];
 

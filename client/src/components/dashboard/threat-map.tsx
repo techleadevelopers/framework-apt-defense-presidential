@@ -47,11 +47,102 @@ const ThreatMap: React.FC = () => {
     return <AlertTriangle className="w-3 h-3" />;
   };
 
+  const getCountryFlag = (countryName: string) => {
+    const flagMap: Record<string, string> = {
+      'Russia': 'RU',
+      'South Korea': 'KR',
+      'France': 'FR',
+      'Iran': 'IR',
+      'Netherlands': 'NL',
+      'China': 'CN',
+      'United States': 'US',
+      'Germany': 'DE',
+      'Brazil': 'BR',
+      'India': 'IN',
+      'Japan': 'JP',
+      'United Kingdom': 'GB',
+      'Canada': 'CA',
+      'Australia': 'AU',
+      'Italy': 'IT',
+      'Spain': 'ES',
+      'Sweden': 'SE',
+      'Poland': 'PL',
+      'Turkey': 'TR',
+      'Ukraine': 'UA',
+      'Romania': 'RO',
+      'Czech Republic': 'CZ',
+      'Mexico': 'MX',
+      'Norway': 'NO',
+      'Finland': 'FI'
+    };
+    return flagMap[countryName] || 'UN';
+  };
+
+  const renderCountryFlag = (countryCode: string) => {
+    // Use CSS-styled flag icons if emoji flags don't render properly
+    return (
+      <span 
+        className="inline-flex items-center justify-center w-5 h-4 text-xs font-bold text-white rounded"
+        style={{
+          background: `linear-gradient(45deg, 
+            ${getCountryColors(countryCode).primary}, 
+            ${getCountryColors(countryCode).secondary})`,
+          border: '1px solid rgba(255,255,255,0.2)',
+          fontSize: '9px'
+        }}
+      >
+        {countryCode}
+      </span>
+    );
+  };
+
+  const getCountryColors = (countryCode: string) => {
+    const colorMap: Record<string, { primary: string; secondary: string }> = {
+      'RU': { primary: '#0052CC', secondary: '#FF4757' }, // Russia
+      'KR': { primary: '#FF6B6B', secondary: '#4ECDC4' }, // South Korea
+      'FR': { primary: '#0984E3', secondary: '#E17055' }, // France
+      'IR': { primary: '#00B894', secondary: '#E17055' }, // Iran
+      'NL': { primary: '#E17055', secondary: '#0984E3' }, // Netherlands
+      'CN': { primary: '#E84393', secondary: '#FDCB6E' }, // China
+      'US': { primary: '#0984E3', secondary: '#E17055' }, // United States
+      'DE': { primary: '#2D3436', secondary: '#FDCB6E' }, // Germany
+      'BR': { primary: '#00B894', secondary: '#FDCB6E' }, // Brazil
+      'IN': { primary: '#E17055', secondary: '#00B894' }, // India
+      'JP': { primary: '#E84393', secondary: '#FFFFFF' }, // Japan
+      'GB': { primary: '#0984E3', secondary: '#E17055' }, // United Kingdom
+      'CA': { primary: '#E17055', secondary: '#FFFFFF' }, // Canada
+      'AU': { primary: '#0984E3', secondary: '#E17055' }, // Australia
+      'IT': { primary: '#00B894', secondary: '#E17055' }, // Italy
+      'ES': { primary: '#E17055', secondary: '#FDCB6E' }, // Spain
+      'SE': { primary: '#0984E3', secondary: '#FDCB6E' }, // Sweden
+      'PL': { primary: '#FFFFFF', secondary: '#E17055' }, // Poland
+      'TR': { primary: '#E17055', secondary: '#FFFFFF' }, // Turkey
+      'UA': { primary: '#0984E3', secondary: '#FDCB6E' }, // Ukraine
+      'RO': { primary: '#0984E3', secondary: '#E17055' }, // Romania
+      'CZ': { primary: '#0984E3', secondary: '#E17055' }, // Czech Republic
+      'MX': { primary: '#00B894', secondary: '#E17055' }, // Mexico
+      'NO': { primary: '#E17055', secondary: '#0984E3' }, // Norway
+      'FI': { primary: '#0984E3', secondary: '#FFFFFF' }  // Finland
+    };
+    
+    return colorMap[countryCode] || { primary: '#636E72', secondary: '#DDD' };
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Main Threat Map */}
       <div className="lg:col-span-2 glass-panel rounded-xl p-6 relative">
         <style>{`
+          .country-flag {
+            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols', sans-serif;
+            font-size: 16px;
+            line-height: 1;
+            display: inline-block;
+            text-rendering: auto;
+            -webkit-font-feature-settings: "liga";
+            font-feature-settings: "liga";
+          }
+          
           .pulse-threat {
             animation: pulse-threat 2s infinite;
           }

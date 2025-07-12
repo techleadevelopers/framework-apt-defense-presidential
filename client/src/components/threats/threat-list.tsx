@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings, Activity, AlertTriangle, Target } from "lucide-react";
+import { Settings, Activity, AlertTriangle, Target, Terminal } from "lucide-react";
 import ThreatSeverity from "./threat-severity";
 import ThreatCounter from "./threat-counter";
 import ThreatDetectionConfig from "./threat-detection-config";
+import InteractiveRuleTesting from "../testing/interactive-rule-testing";
+import AIThreatAnalysis from "./ai-threat-analysis";
 
 interface Threat {
   id: number;
@@ -131,7 +133,7 @@ export default function ThreatList() {
   return (
     <div className="space-y-6">
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 bg-[var(--cyber-dark)]/50">
+        <TabsList className="grid w-full grid-cols-5 bg-[var(--cyber-dark)]/50">
           <TabsTrigger value="overview" className="text-white flex items-center space-x-2">
             <Activity className="w-4 h-4" />
             <span>Overview</span>
@@ -143,6 +145,10 @@ export default function ThreatList() {
           <TabsTrigger value="detection" className="text-white flex items-center space-x-2">
             <Settings className="w-4 h-4" />
             <span>Detection Config</span>
+          </TabsTrigger>
+          <TabsTrigger value="rule-testing" className="text-white flex items-center space-x-2">
+            <Terminal className="w-4 h-4" />
+            <span>Rule Testing</span>
           </TabsTrigger>
           <TabsTrigger value="analysis" className="text-white flex items-center space-x-2">
             <Target className="w-4 h-4" />
@@ -306,20 +312,25 @@ export default function ThreatList() {
           <ThreatDetectionConfig />
         </TabsContent>
 
-        <TabsContent value="analysis" className="space-y-6">
-          <div className="glass-panel rounded-xl p-6">
-            <h3 className="font-orbitron text-lg text-[var(--cyber-cyan)] mb-4">Advanced Threat Analysis</h3>
-            <div className="text-center py-12">
-              <Target className="w-16 h-16 text-[var(--cyber-cyan)] mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">AI-Powered Threat Analysis</h3>
-              <p className="text-gray-400 max-w-md mx-auto">
-                Deep behavioral analysis, pattern recognition, and predictive threat modeling for advanced threat detection.
-              </p>
-              <Button className="mt-4 bg-[var(--cyber-cyan)] text-[var(--cyber-dark)]">
-                Start Analysis
-              </Button>
+        <TabsContent value="rule-testing">
+          <div className="space-y-4">
+            <div className="bg-[var(--cyber-dark)] border border-[var(--cyber-cyan)]/30 rounded-lg p-6">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-[var(--cyber-cyan)] rounded-lg flex items-center justify-center">
+                  <Terminal className="text-[var(--cyber-dark)] text-xl" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-orbitron font-bold text-[var(--cyber-cyan)]">Interactive Rule Testing Environment</h3>
+                  <p className="text-gray-400">Test your detection rules against simulated attack scenarios and validate their effectiveness.</p>
+                </div>
+              </div>
             </div>
+            <InteractiveRuleTesting />
           </div>
+        </TabsContent>
+
+        <TabsContent value="analysis" className="space-y-6">
+          <AIThreatAnalysis />
         </TabsContent>
       </Tabs>
     </div>
