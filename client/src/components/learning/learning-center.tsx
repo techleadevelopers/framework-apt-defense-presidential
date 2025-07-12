@@ -1101,6 +1101,259 @@ const detailedCourses: DetailedCourse[] = [
         ]
       }
     ]
+  },
+  {
+    id: '7',
+    title: 'DeFi Security & Reentrancy Attacks',
+    description: 'Comprehensive course on DeFi security vulnerabilities, reentrancy attacks, and blockchain smart contract exploitation.',
+    level: 'advanced',
+    duration: '22 hours',
+    totalModules: 16,
+    enrolled: 892,
+    rating: 4.9,
+    category: 'Blockchain Security',
+    instructor: 'Dr. Elena Vasquez, DeFi Security Expert',
+    certification: 'DeFi Security Specialist',
+    prerequisites: ['Blockchain fundamentals', 'Smart contract basics', 'Solidity programming', 'Financial systems knowledge'],
+    learningObjectives: [
+      'Master reentrancy attack vectors and prevention',
+      'Understand DeFi protocol vulnerabilities',
+      'Learn flash loan attack techniques',
+      'Develop secure smart contract practices'
+    ],
+    modules: [
+      {
+        id: '7-1',
+        title: 'DeFi Ecosystem & Attack Landscape',
+        duration: '95 min',
+        description: 'Overview of DeFi protocols and common attack vectors',
+        content: [
+          'DeFi Protocol Architecture',
+          'Automated Market Makers (AMMs)',
+          'Lending & Borrowing Protocols',
+          'Yield Farming & Liquidity Mining',
+          'Cross-Chain Bridges & Risks',
+          'Historical DeFi Attacks Analysis'
+        ],
+        exercises: [
+          'Analyze major DeFi hacks (2020-2024)',
+          'Map attack vectors to protocol types',
+          'Identify vulnerable DeFi components'
+        ]
+      },
+      {
+        id: '7-2',
+        title: 'Reentrancy Attacks Deep Dive',
+        duration: '110 min',
+        description: 'Complete understanding of reentrancy vulnerabilities',
+        content: [
+          'What is Reentrancy?',
+          'Single-Function Reentrancy',
+          'Cross-Function Reentrancy',
+          'Cross-Contract Reentrancy',
+          'The DAO Attack Case Study',
+          'Read-Only Reentrancy Attacks'
+        ],
+        exercises: [
+          'Exploit vulnerable smart contract',
+          'Create reentrancy attack simulation',
+          'Analyze real reentrancy exploits'
+        ]
+      },
+      {
+        id: '7-3',
+        title: 'Flash Loan Attack Mechanics',
+        duration: '125 min',
+        description: 'Advanced flash loan exploitation techniques',
+        content: [
+          'Flash Loan Fundamentals',
+          'Arbitrage vs Exploitation',
+          'Price Oracle Manipulation',
+          'Liquidity Pool Attacks',
+          'Compound Finance Exploit',
+          'Harvest Finance Attack Analysis'
+        ],
+        exercises: [
+          'Execute flash loan arbitrage',
+          'Simulate oracle manipulation',
+          'Recreate historical flash loan attacks'
+        ]
+      },
+      {
+        id: '7-4',
+        title: 'Smart Contract Security Patterns',
+        duration: '100 min',
+        description: 'Defensive programming for DeFi protocols',
+        content: [
+          'Checks-Effects-Interactions Pattern',
+          'Reentrancy Guards Implementation',
+          'Pull vs Push Payment Patterns',
+          'Time-Lock Mechanisms',
+          'Multi-Signature Wallets',
+          'Proxy Contract Security'
+        ],
+        exercises: [
+          'Implement reentrancy guard',
+          'Create secure withdrawal function',
+          'Design time-locked operations'
+        ]
+      },
+      {
+        id: '7-5',
+        title: 'Advanced DeFi Exploits',
+        duration: '130 min',
+        description: 'Complex multi-vector DeFi attacks',
+        content: [
+          'Sandwich Attacks & MEV',
+          'Governance Token Manipulation',
+          'Cross-Chain Bridge Exploits',
+          'Yield Farming Rug Pulls',
+          'Front-Running Attacks',
+          'Slippage Manipulation'
+        ],
+        exercises: [
+          'Execute sandwich attack simulation',
+          'Analyze governance attacks',
+          'Identify bridge vulnerabilities'
+        ]
+      },
+      {
+        id: '7-6',
+        title: 'DeFi Protocol Auditing',
+        duration: '115 min',
+        description: 'Professional smart contract security assessment',
+        content: [
+          'Automated Security Tools',
+          'Manual Code Review Process',
+          'Economic Security Analysis',
+          'Formal Verification Methods',
+          'Bug Bounty Programs',
+          'Post-Deployment Monitoring'
+        ],
+        exercises: [
+          'Conduct full protocol audit',
+          'Use automated analysis tools',
+          'Create security report'
+        ]
+      }
+    ]
+  },
+  {
+    id: '8',
+    title: 'Emerging Blockchain Threats 2025',
+    description: 'Cutting-edge course on future blockchain attack vectors, quantum threats, and next-generation DeFi exploits.',
+    level: 'advanced',
+    duration: '18 hours',
+    totalModules: 12,
+    enrolled: 234,
+    rating: 4.8,
+    category: 'Future Threats',
+    instructor: 'Marcus Chen, Blockchain Security Researcher',
+    certification: 'Emerging Threat Analyst',
+    prerequisites: ['DeFi Security course', 'Advanced cryptography', 'Quantum computing basics'],
+    learningObjectives: [
+      'Understand quantum threats to blockchain',
+      'Master Layer 2 security vulnerabilities',
+      'Predict future attack vectors',
+      'Develop quantum-resistant defenses'
+    ],
+    modules: [
+      {
+        id: '8-1',
+        title: 'Quantum Threats to Blockchain',
+        duration: '90 min',
+        description: 'Post-quantum cryptography and blockchain security',
+        content: [
+          'Quantum Computing Fundamentals',
+          'Shor\'s Algorithm Impact on RSA/ECC',
+          'Quantum-Resistant Cryptography',
+          'Timeline of Quantum Threats',
+          'Blockchain Migration Strategies',
+          'Post-Quantum Signature Schemes'
+        ],
+        exercises: [
+          'Analyze quantum vulnerability timeline',
+          'Implement post-quantum signatures',
+          'Design quantum-resistant protocols'
+        ]
+      },
+      {
+        id: '8-2',
+        title: 'Layer 2 & Rollup Security',
+        duration: '105 min',
+        description: 'Security challenges in scaling solutions',
+        content: [
+          'Optimistic Rollup Vulnerabilities',
+          'ZK-Rollup Attack Vectors',
+          'State Channel Exploits',
+          'Plasma Security Issues',
+          'Cross-Rollup Bridge Attacks',
+          'Sequencer Centralization Risks'
+        ],
+        exercises: [
+          'Exploit rollup exit mechanisms',
+          'Analyze ZK-proof vulnerabilities',
+          'Simulate state channel attacks'
+        ]
+      },
+      {
+        id: '8-3',
+        title: 'AI-Powered Blockchain Attacks',
+        duration: '95 min',
+        description: 'Machine learning enhanced exploit techniques',
+        content: [
+          'AI-Driven Smart Contract Analysis',
+          'Automated Vulnerability Discovery',
+          'ML-Based Front-Running Bots',
+          'Adversarial AI in DeFi',
+          'Pattern Recognition Attacks',
+          'Deepfake Attacks on Governance'
+        ],
+        exercises: [
+          'Train ML model for vuln detection',
+          'Create AI-powered MEV bot',
+          'Implement adversarial attacks'
+        ]
+      },
+      {
+        id: '8-4',
+        title: 'Next-Gen DeFi Attack Vectors',
+        duration: '120 min',
+        description: 'Future DeFi protocol vulnerabilities',
+        content: [
+          'Liquid Staking Derivatives Risks',
+          'Real World Asset (RWA) Attacks',
+          'Decentralized Identity Exploits',
+          'Cross-Chain Interoperability Risks',
+          'NFT Financialization Attacks',
+          'Prediction Market Manipulation'
+        ],
+        exercises: [
+          'Exploit liquid staking protocols',
+          'Analyze RWA tokenization risks',
+          'Simulate cross-chain attacks'
+        ]
+      },
+      {
+        id: '8-5',
+        title: 'Blockchain Compliance & Regulation',
+        duration: '85 min',
+        description: 'Future regulatory landscape and compliance attacks',
+        content: [
+          'Regulatory Sandboxes & Exploits',
+          'KYC/AML Bypass Techniques',
+          'Privacy Coin Mixing Attacks',
+          'Regulatory Arbitrage Risks',
+          'Cross-Border Compliance Issues',
+          'Decentralized Compliance Tools'
+        ],
+        exercises: [
+          'Analyze regulatory gaps',
+          'Simulate compliance bypass',
+          'Design privacy-preserving solutions'
+        ]
+      }
+    ]
   }
 ];
 
@@ -1142,6 +1395,42 @@ const mockAchievements: Achievement[] = [
     earned: false,
     points: 1000,
     rarity: 'legendary'
+  },
+  {
+    id: '5',
+    title: 'DeFi Security Expert',
+    description: 'Complete DeFi Security & Reentrancy Attacks course with 90%+ score',
+    icon: 'target',
+    earned: false,
+    points: 750,
+    rarity: 'epic'
+  },
+  {
+    id: '6',
+    title: 'Blockchain Defender',
+    description: 'Successfully prevent 25 blockchain-based attacks in simulations',
+    icon: 'shield',
+    earned: false,
+    points: 500,
+    rarity: 'rare'
+  },
+  {
+    id: '7',
+    title: 'Flash Loan Hunter',
+    description: 'Identify and exploit 10 flash loan vulnerabilities',
+    icon: 'zap',
+    earned: false,
+    points: 600,
+    rarity: 'epic'
+  },
+  {
+    id: '8',
+    title: 'Future Threat Analyst',
+    description: 'Master emerging blockchain threats and quantum cryptography',
+    icon: 'star',
+    earned: false,
+    points: 1500,
+    rarity: 'legendary'
   }
 ];
 
@@ -1179,15 +1468,32 @@ const mockCertifications: Certification[] = [
 ];
 
 export default function LearningCenter() {
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState<string>("all");
   const [selectedCourse, setSelectedCourse] = useState<DetailedCourse | null>(null);
   const [selectedModule, setSelectedModule] = useState<CourseModule | null>(null);
-  const [userPoints, setUserPoints] = useState(2750);
-  const [userLevel, setUserLevel] = useState(12);
-  const [streak, setStreak] = useState(7);
+  
+  // Advanced user progress tracking
+  const [userProgress, setUserProgress] = useState({
+    totalPoints: 2847,
+    level: 12,
+    completedCourses: 3,
+    certificates: 2,
+    streak: 7,
+    rank: "Advanced Analyst",
+    nextLevelPoints: 3200,
+    globalRank: 1247,
+    weeklyPoints: 420,
+    monthlyGoal: 1500,
+    achievements: 15,
+    studyTime: 127, // hours
+    practicalExercises: 34,
+    simulationsCompleted: 12,
+    mentorshipHours: 8
+  });
 
-  const categories = ["all", "Fundamentals", "Threat Hunting", "Frameworks", "Incident Response", "Penetration Testing", "Cloud Security"];
+  const categories = ["all", "Fundamentals", "Threat Hunting", "Frameworks", "Incident Response", "Penetration Testing", "Cloud Security", "Blockchain Security", "Future Threats"];
   const levels = ["all", "beginner", "intermediate", "advanced"];
 
   const filteredCourses = detailedCourses.filter(course => {
@@ -1195,6 +1501,123 @@ export default function LearningCenter() {
     const levelMatch = selectedLevel === "all" || course.level === selectedLevel;
     return categoryMatch && levelMatch;
   });
+
+  // Global leaderboard data
+  const globalLeaderboard = [
+    { rank: 1, name: "Sarah Chen", country: "Singapore", points: 8942, level: 28, specialty: "Threat Hunting" },
+    { rank: 2, name: "Miguel Rodriguez", country: "Spain", points: 8734, level: 27, specialty: "Incident Response" },
+    { rank: 3, name: "Priya Patel", country: "India", points: 8521, level: 26, specialty: "MITRE ATT&CK" },
+    { rank: 4, name: "Alex Johnson", country: "USA", points: 8347, level: 25, specialty: "Penetration Testing" },
+    { rank: 5, name: "Li Wei", country: "China", points: 8129, level: 24, specialty: "Cloud Security" },
+    { rank: 1247, name: "You", country: "Global", points: 2847, level: 12, specialty: "SOC Analysis" }
+  ];
+
+  // Weekly challenges
+  const weeklyChallenge = {
+    title: "DeFi Flash Loan Attack Analysis",
+    description: "Analyze the recent $100M flash loan attack on a major DeFi protocol and create defensive strategies",
+    difficulty: "Advanced",
+    points: 750,
+    timeRemaining: "4 days",
+    participants: 3247,
+    completed: 89
+  };
+
+  const blockchainChallenges = [
+    {
+      title: "Reentrancy Vulnerability Hunt",
+      description: "Find and exploit reentrancy vulnerabilities in 5 different smart contracts",
+      difficulty: "Expert",
+      points: 1000,
+      timeRemaining: "2 days",
+      participants: 1834,
+      completed: 23
+    },
+    {
+      title: "Cross-Chain Bridge Security Analysis",
+      description: "Analyze security vulnerabilities in cross-chain bridge protocols",
+      difficulty: "Advanced",
+      points: 600,
+      timeRemaining: "5 days",
+      participants: 2156,
+      completed: 145
+    },
+    {
+      title: "Quantum Cryptography Future Threats",
+      description: "Assess quantum computing threats to current blockchain implementations",
+      difficulty: "Expert",
+      points: 1200,
+      timeRemaining: "1 week",
+      participants: 892,
+      completed: 12
+    }
+  ];
+
+  // Study groups and communities
+  const studyGroups = [
+    { name: "SOC Analysts United", members: 12847, language: "English", focus: "Daily threat briefings" },
+    { name: "Analistas de Seguridad", members: 3421, language: "Spanish", focus: "LATAM threat landscape" },
+    { name: "サイバーセキュリティ", members: 2156, language: "Japanese", focus: "APT research" },
+    { name: "Cyber Defense Europe", members: 8934, language: "Multi", focus: "European regulations" }
+  ];
+
+  // Live mentorship sessions
+  const mentorshipSessions = [
+    { 
+      title: "Advanced Threat Hunting Workshop",
+      mentor: "Dr. Marcus Rodriguez, GCTI",
+      time: "Today 2:00 PM UTC",
+      duration: "90 min",
+      participants: "15/20",
+      language: "English"
+    },
+    { 
+      title: "MITRE ATT&CK Framework Deep Dive",
+      mentor: "Sarah Chen, CISSP",
+      time: "Tomorrow 10:00 AM UTC",
+      duration: "2 hours",
+      participants: "8/15",
+      language: "English"
+    },
+    { 
+      title: "Incident Response Best Practices",
+      mentor: "Alex Thompson, GCIH",
+      time: "Wednesday 6:00 PM UTC",
+      duration: "75 min",
+      participants: "12/25",
+      language: "English"
+    }
+  ];
+
+  // Career progression paths
+  const careerPaths = [
+    {
+      title: "SOC Analyst Career Track",
+      currentLevel: "Junior Analyst",
+      nextLevel: "Senior Analyst",
+      progress: 75,
+      requirements: [
+        "Complete 5 core courses (4/5 done)",
+        "Pass practical assessment",
+        "Complete 3 simulations (2/3 done)",
+        "Mentor 2 junior students"
+      ],
+      estimatedTime: "2-3 months"
+    },
+    {
+      title: "Threat Hunter Specialist",
+      currentLevel: "Foundation",
+      nextLevel: "Practitioner",
+      progress: 30,
+      requirements: [
+        "Advanced threat hunting course",
+        "Complete 10 hunting exercises",
+        "Identify 50 real threats",
+        "Publish threat research"
+      ],
+      estimatedTime: "6-8 months"
+    }
+  ];
 
   const getLevelColor = (level: string) => {
     switch (level) {
@@ -1247,7 +1670,7 @@ export default function LearningCenter() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">{userLevel}</div>
+            <div className="text-3xl font-bold text-white mb-1">{userProgress.level}</div>
             <div className="text-sm text-gray-400">SOC Analyst</div>
             <Progress value={75} className="w-full mt-2" />
           </CardContent>
@@ -1261,7 +1684,7 @@ export default function LearningCenter() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">{userPoints.toLocaleString()}</div>
+            <div className="text-3xl font-bold text-white mb-1">{userProgress.totalPoints.toLocaleString()}</div>
             <div className="text-sm text-gray-400">Total earned</div>
           </CardContent>
         </Card>
@@ -1274,7 +1697,7 @@ export default function LearningCenter() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">{streak}</div>
+            <div className="text-3xl font-bold text-white mb-1">{userProgress.streak}</div>
             <div className="text-sm text-gray-400">Days active</div>
           </CardContent>
         </Card>
@@ -1297,7 +1720,7 @@ export default function LearningCenter() {
 
       {/* Main Learning Interface */}
       <Tabs defaultValue="courses" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 bg-[var(--cyber-navy)]">
+        <TabsList className="grid w-full grid-cols-6 bg-[var(--cyber-navy)]">
           <TabsTrigger value="courses" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
             <BookOpen className="w-4 h-4 mr-2" />
             Courses
@@ -1313,6 +1736,14 @@ export default function LearningCenter() {
           <TabsTrigger value="leaderboard" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
             <Users className="w-4 h-4 mr-2" />
             Leaderboard
+          </TabsTrigger>
+          <TabsTrigger value="mentorship" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
+            <GraduationCap className="w-4 h-4 mr-2" />
+            Mentorship
+          </TabsTrigger>
+          <TabsTrigger value="career" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
+            <Target className="w-4 h-4 mr-2" />
+            Career
           </TabsTrigger>
         </TabsList>
 
@@ -1823,7 +2254,7 @@ export default function LearningCenter() {
                   { rank: 2, name: 'Sarah Wilson', points: 7420, level: 21, badge: 'Threat Hunter' },
                   { rank: 3, name: 'Mike Johnson', points: 6890, level: 19, badge: 'SOC Specialist' },
                   { rank: 4, name: 'Emma Davis', points: 6234, level: 18, badge: 'Incident Responder' },
-                  { rank: 5, name: 'You', points: userPoints, level: userLevel, badge: 'SOC Analyst', highlight: true },
+                  { rank: 5, name: 'You', points: userProgress.totalPoints, level: userProgress.level, badge: 'SOC Analyst', highlight: true },
                   { rank: 6, name: 'David Brown', points: 2456, level: 11, badge: 'Security Analyst' },
                   { rank: 7, name: 'Lisa Garcia', points: 2103, level: 10, badge: 'Junior Analyst' }
                 ].map((user) => (
@@ -1855,6 +2286,261 @@ export default function LearningCenter() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Leaderboard Tab */}
+        <TabsContent value="leaderboard" className="space-y-6">
+          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+            <CardHeader>
+              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Global Leaderboard</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {globalLeaderboard.map((player, index) => (
+                  <div key={index} className={`border rounded-lg p-4 ${
+                    player.name === "You" 
+                      ? "bg-[var(--cyber-cyan)]/10 border-[var(--cyber-cyan)]/50" 
+                      : "bg-[var(--cyber-dark)]/50 border-[var(--cyber-cyan)]/20"
+                  }`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
+                          player.rank <= 3 ? "bg-yellow-400 text-black" : "bg-[var(--cyber-cyan)]/20 text-[var(--cyber-cyan)]"
+                        }`}>
+                          {player.rank <= 3 ? "🏆" : player.rank}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-white">{player.name}</h3>
+                          <p className="text-sm text-gray-400">{player.country} • {player.specialty}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-[var(--cyber-cyan)]">{player.points.toLocaleString()}</div>
+                        <div className="text-sm text-gray-400">Level {player.level}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+              <CardHeader>
+                <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">This Week's Top Performers</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { name: "Elena Rodriguez", points: 1247, specialty: "Malware Analysis", country: "Mexico" },
+                    { name: "Hiroshi Tanaka", points: 1134, specialty: "Network Security", country: "Japan" },
+                    { name: "Sarah Mitchell", points: 1089, specialty: "Incident Response", country: "Canada" },
+                    { name: "Ahmed Hassan", points: 1045, specialty: "Threat Hunting", country: "Egypt" },
+                    { name: "You", points: 420, specialty: "SOC Analysis", country: "Global" }
+                  ].map((player, index) => (
+                    <div key={index} className={`flex items-center justify-between p-3 rounded-lg ${
+                      player.name === "You" 
+                        ? "bg-[var(--cyber-cyan)]/10 border border-[var(--cyber-cyan)]/30" 
+                        : "bg-[var(--cyber-dark)]/30"
+                    }`}>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-sm text-[var(--cyber-cyan)]">#{index + 1}</span>
+                        <div>
+                          <p className="font-medium text-white">{player.name}</p>
+                          <p className="text-xs text-gray-400">{player.specialty}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-[var(--cyber-cyan)]">{player.points}</p>
+                        <p className="text-xs text-gray-400">{player.country}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+              <CardHeader>
+                <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Monthly Challenge Leaders</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { name: "Marcus Chen", challenges: 12, points: 3400, badge: "🥇" },
+                    { name: "Lisa Johnson", challenges: 10, points: 2900, badge: "🥈" },
+                    { name: "Pavel Novak", challenges: 9, points: 2750, badge: "🥉" },
+                    { name: "Ana Silva", challenges: 8, points: 2200, badge: "🏅" },
+                    { name: "You", challenges: 3, points: 420, badge: "🎯" }
+                  ].map((player, index) => (
+                    <div key={index} className={`flex items-center justify-between p-3 rounded-lg ${
+                      player.name === "You" 
+                        ? "bg-[var(--cyber-cyan)]/10 border border-[var(--cyber-cyan)]/30" 
+                        : "bg-[var(--cyber-dark)]/30"
+                    }`}>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-lg">{player.badge}</span>
+                        <div>
+                          <p className="font-medium text-white">{player.name}</p>
+                          <p className="text-xs text-gray-400">{player.challenges} challenges</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-[var(--cyber-cyan)]">{player.points}</p>
+                        <p className="text-xs text-gray-400">points</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+
+        {/* Mentorship Tab */}
+        <TabsContent value="mentorship" className="space-y-6">
+          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+            <CardHeader>
+              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Live Mentorship Sessions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {mentorshipSessions.map((session, index) => (
+                  <div key={index} className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-white mb-1">{session.title}</h3>
+                        <p className="text-sm text-gray-400 mb-2">by {session.mentor}</p>
+                        <div className="flex items-center space-x-4 text-sm text-gray-300">
+                          <span>📅 {session.time}</span>
+                          <span>⏱️ {session.duration}</span>
+                          <span>👥 {session.participants}</span>
+                          <span>🌐 {session.language}</span>
+                        </div>
+                      </div>
+                      <Button className="bg-[var(--cyber-cyan)] hover:bg-[var(--cyber-cyan)]/80 text-[var(--cyber-dark)]">
+                        Join Session
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+            <CardHeader>
+              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Global Study Groups</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {studyGroups.map((group, index) => (
+                  <div key={index} className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                    <h3 className="font-semibold text-white mb-2">{group.name}</h3>
+                    <p className="text-sm text-gray-400 mb-2">{group.focus}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3 text-sm text-gray-300">
+                        <span>👥 {group.members.toLocaleString()}</span>
+                        <span>🌐 {group.language}</span>
+                      </div>
+                      <Button size="sm" variant="outline" className="border-[var(--cyber-cyan)]/30">
+                        Join Group
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Career Path Tab */}
+        <TabsContent value="career" className="space-y-6">
+          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+            <CardHeader>
+              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Career Progression Paths</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {careerPaths.map((path, index) => (
+                  <div key={index} className="border border-[var(--cyber-cyan)]/20 rounded-lg p-6 bg-[var(--cyber-dark)]/50">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <h3 className="font-semibold text-white text-lg">{path.title}</h3>
+                        <p className="text-sm text-gray-400">{path.currentLevel} → {path.nextLevel}</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-bold text-[var(--cyber-cyan)]">{path.progress}%</div>
+                        <div className="text-sm text-gray-400">{path.estimatedTime}</div>
+                      </div>
+                    </div>
+                    <Progress value={path.progress} className="w-full mb-4" />
+                    <div className="space-y-2">
+                      <h4 className="font-medium text-white">Requirements:</h4>
+                      <ul className="space-y-1">
+                        {path.requirements.map((req, reqIndex) => (
+                          <li key={reqIndex} className="text-sm text-gray-300 flex items-center space-x-2">
+                            <CheckCircle className="w-4 h-4 text-green-400" />
+                            <span>{req}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+            <CardHeader>
+              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Industry Skills Map</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                  <h3 className="font-semibold text-white mb-3">Technical Skills</h3>
+                  <div className="space-y-2">
+                    {['SIEM Management', 'Threat Hunting', 'Incident Response', 'Malware Analysis', 'Network Security'].map((skill, index) => (
+                      <div key={index} className="flex items-center justify-between">
+                        <span className="text-sm text-gray-300">{skill}</span>
+                        <Badge className="bg-[var(--cyber-cyan)]/20 text-[var(--cyber-cyan)]">
+                          {Math.floor(Math.random() * 40) + 60}%
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                  <h3 className="font-semibold text-white mb-3">Soft Skills</h3>
+                  <div className="space-y-2">
+                    {['Communication', 'Problem Solving', 'Leadership', 'Time Management', 'Teamwork'].map((skill, index) => (
+                      <div key={index} className="flex items-center justify-between">
+                        <span className="text-sm text-gray-300">{skill}</span>
+                        <Badge className="bg-[var(--cyber-cyan)]/20 text-[var(--cyber-cyan)]">
+                          {Math.floor(Math.random() * 30) + 70}%
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="border border-[var(--cyber-cyan)]/20 rounded-lg p-4 bg-[var(--cyber-dark)]/50">
+                  <h3 className="font-semibold text-white mb-3">Certifications</h3>
+                  <div className="space-y-2">
+                    {['Security+', 'CISSP', 'GCIH', 'GSEC', 'CEH'].map((cert, index) => (
+                      <div key={index} className="flex items-center justify-between">
+                        <span className="text-sm text-gray-300">{cert}</span>
+                        <Badge className={index < 2 ? "bg-green-500/20 text-green-400" : "bg-gray-500/20 text-gray-400"}>
+                          {index < 2 ? "Earned" : "Planned"}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>

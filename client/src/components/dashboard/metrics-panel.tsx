@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AlertTriangle, Network, Shield, Brain } from "lucide-react";
+import { useThreatData } from '@/hooks/use-threat-data';
 
 interface DashboardMetrics {
   activeThreats: number;
@@ -11,29 +12,28 @@ interface DashboardMetrics {
 }
 
 const MetricsPanel: React.FC = () => {
+  const { threatStats } = useThreatData();
   const [metrics, setMetrics] = useState<DashboardMetrics>({
-    activeThreats: 3,
-    criticalThreats: 2,
-    blockedAttacks: 1247,
+    activeThreats: 0,
+    criticalThreats: 0,
+    blockedAttacks: 0,
     networkHealth: 98.7,
     aiConfidence: 96.4,
-    totalThreatsToday: 15
+    totalThreatsToday: 0
   });
 
-  // Simulate real-time updates
+  // Update metrics based on real threat data
   useEffect(() => {
-    const interval = setInterval(() => {
-      setMetrics(prev => ({
-        ...prev,
-        activeThreats: Math.max(0, prev.activeThreats + (Math.random() > 0.7 ? 1 : 0)),
-        blockedAttacks: prev.blockedAttacks + Math.floor(Math.random() * 3),
-        networkHealth: Math.max(90, Math.min(100, prev.networkHealth + (Math.random() - 0.5) * 2)),
-        aiConfidence: Math.max(90, Math.min(100, prev.aiConfidence + (Math.random() - 0.5))),
-      }));
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
+    setMetrics(prev => ({
+      ...prev,
+      activeThreats: threatStats.totalThreats,
+      criticalThreats: threatStats.criticalThreats,
+      totalThreatsToday: threatStats.totalThreats,
+      blockedAttacks: Math.floor(threatStats.totalThreats * 2.5), // Simulate blocked attacks
+      networkHealth: Math.max(50, 100 - (threatStats.criticalThreats * 10 + threatStats.highThreats * 5)),
+      aiConfidence: Math.max(80, 100 - (threatStats.criticalThreats * 3))
+    }));
+  }, [threatStats]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

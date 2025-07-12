@@ -1,4 +1,4 @@
-import { Shield, Gauge, AlertTriangle, Network, Play, Brain, Bot, Eye, GraduationCap } from "lucide-react";
+import { Shield, Gauge, AlertTriangle, Network, Play, Brain, Bot, Eye, GraduationCap, Globe } from "lucide-react";
 import { TabType } from "@/pages/soc-dashboard";
 
 interface SidebarProps {
@@ -15,6 +15,7 @@ const navigationItems = [
   { id: "ai-analysis" as TabType, label: "ML/AI Analysis", icon: Bot },
   { id: "sentinel" as TabType, label: "SENTINEL System", icon: Eye },
   { id: "learning" as TabType, label: "Learning Center", icon: GraduationCap },
+  { id: "real-api" as TabType, label: "Real API Integration", icon: Globe },
 ];
 
 export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {

@@ -41,13 +41,22 @@ interface SecurityAlert {
   confidence: number;
 }
 
+const videoSources = [
+  "https://mattcannon.games/codepen/glitches/cam1.mp4",
+  "https://mattcannon.games/codepen/glitches/cam2.mp4", 
+  "https://mattcannon.games/codepen/glitches/cam3.mp4",
+  "https://mattcannon.games/codepen/glitches/cam4.mp4",
+  "https://mattcannon.games/codepen/glitches/cam5.mp4",
+  "https://mattcannon.games/codepen/glitches/cam6.mp4"
+];
+
 const mockCameras: SurveillanceCamera[] = [
-  { id: 'cam-001', name: 'Main Entrance', location: 'Building A - Lobby', status: 'online', feed: 'rtsp://cam1', alerts: 2, aiEnabled: true },
-  { id: 'cam-002', name: 'Server Room', location: 'Building A - Floor 2', status: 'online', feed: 'rtsp://cam2', alerts: 0, aiEnabled: true },
-  { id: 'cam-003', name: 'Parking Garage', location: 'Underground Level 1', status: 'offline', feed: 'rtsp://cam3', alerts: 1, aiEnabled: false },
-  { id: 'cam-004', name: 'Emergency Exit', location: 'Building B - Floor 1', status: 'online', feed: 'rtsp://cam4', alerts: 0, aiEnabled: true },
-  { id: 'cam-005', name: 'Loading Dock', location: 'Building C - Ground Floor', status: 'maintenance', feed: 'rtsp://cam5', alerts: 3, aiEnabled: true },
-  { id: 'cam-006', name: 'Reception Area', location: 'Building A - Floor 1', status: 'online', feed: 'rtsp://cam6', alerts: 1, aiEnabled: true }
+  { id: 'cam-001', name: 'Main Entrance', location: 'Building A - Lobby', status: 'online', feed: videoSources[0], alerts: 2, aiEnabled: true },
+  { id: 'cam-002', name: 'Server Room', location: 'Building A - Floor 2', status: 'online', feed: videoSources[1], alerts: 0, aiEnabled: true },
+  { id: 'cam-003', name: 'Parking Garage', location: 'Underground Level 1', status: 'offline', feed: videoSources[2], alerts: 1, aiEnabled: false },
+  { id: 'cam-004', name: 'Emergency Exit', location: 'Building B - Floor 1', status: 'online', feed: videoSources[3], alerts: 0, aiEnabled: true },
+  { id: 'cam-005', name: 'Loading Dock', location: 'Building C - Ground Floor', status: 'maintenance', feed: videoSources[4], alerts: 3, aiEnabled: true },
+  { id: 'cam-006', name: 'Reception Area', location: 'Building A - Floor 1', status: 'online', feed: videoSources[5], alerts: 1, aiEnabled: true }
 ];
 
 const mockAlerts: SecurityAlert[] = [
@@ -696,6 +705,44 @@ export default function SurveillanceSystem() {
                 justify-content: center;
               }
               
+              .camera-video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: grayscale(1) contrast(1.2) brightness(0.9);
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+              }
+              
+              .camera-video.color-mode {
+                filter: contrast(1.2) brightness(0.9);
+              }
+              
+              .glitch-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: transparent;
+                z-index: 3;
+                pointer-events: none;
+              }
+              
+              .color-distortion {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                mix-blend-mode: hard-light;
+                opacity: 0;
+                z-index: 4;
+                pointer-events: none;
+              }
+              
               .scan-line {
                 position: absolute;
                 top: 0;
@@ -789,9 +836,54 @@ export default function SurveillanceSystem() {
                   <div className="camera-content">
                     <div className="scan-line"></div>
                     <div className="noise-overlay"></div>
-                    <div className="text-[#2196f3] text-lg font-bold opacity-60">
-                      {camera.isOffline ? "OFFLINE" : "LIVE FEED"}
+                    
+                    {/* Real Video Feed */}
+                    {!camera.isOffline && (
+                      <video
+                        className="camera-video"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        src={videoSources[sentinelCameras.indexOf(camera)]}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          filter: isColorMode ? 'contrast(1.2) brightness(0.9)' : 'grayscale(1) contrast(1.2) brightness(0.9)',
+                          opacity: camera.isOffline ? 0.5 : 1
+                        }}
+                        onError={(e) => {
+                          console.error('Video loading error:', e);
+                          // Fallback to placeholder if video fails
+                          const video = e.target as HTMLVideoElement;
+                          video.style.display = 'none';
+                        }}
+                      />
+                    )}
+                    
+                    {/* Offline State */}
+                    {camera.isOffline && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black">
+                        <div className="absolute inset-0 bg-gray-800 opacity-60">
+                          <div className="absolute inset-0 bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900"></div>
+                          <div className="absolute top-4 left-4 w-8 h-12 bg-gray-600 rounded opacity-80"></div>
+                          <div className="absolute top-8 right-6 w-10 h-10 bg-gray-500 rounded-full opacity-70"></div>
+                          <div className="absolute bottom-8 left-1/3 w-12 h-6 bg-gray-600 rounded opacity-60"></div>
+                          <div className="absolute top-1/2 right-1/4 w-6 h-8 bg-gray-700 rounded opacity-50"></div>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Overlays */}
+                    <div className="glitch-overlay"></div>
+                    <div className="color-distortion"></div>
+                    
+                    {/* Status indicators */}
+                    <div className="absolute top-2 left-2 text-xs text-[#2196f3] font-mono bg-black/60 px-2 py-1 rounded z-10">
+                      {camera.isOffline ? "NO SIGNAL" : "RECORDING"}
                     </div>
+                    
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#2196f3]/5"></div>
                   </div>
                   

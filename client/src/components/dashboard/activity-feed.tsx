@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Clock, Shield, AlertTriangle, CheckCircle, XCircle, MapPin, Activity, Target, Zap } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useThreatData } from '@/hooks/use-threat-data';
 
 interface SecurityEvent {
   id: number;
@@ -10,53 +15,23 @@ interface SecurityEvent {
 }
 
 const ActivityFeed: React.FC = () => {
-  const [events, setEvents] = useState<SecurityEvent[]>([
-    {
-      id: 1,
-      eventType: "threat_detection",
-      source: "192.168.1.45",
-      message: "Critical APT29 activity detected",
-      severity: "critical",
-      timestamp: new Date(Date.now() - 2 * 60000)
-    },
-    {
-      id: 2,
-      eventType: "security_alert",
-      source: "DESKTOP-ABC123",
-      message: "Suspicious PowerShell execution",
-      severity: "high",
-      timestamp: new Date(Date.now() - 5 * 60000)
-    },
-    {
-      id: 3,
-      eventType: "system_update",
-      source: "TactiCore Kernel",
-      message: "ML model updated successfully",
-      severity: "medium",
-      timestamp: new Date(Date.now() - 8 * 60000)
-    }
-  ]);
+  const { activeThreats, threatStats } = useThreatData();
+  const [events, setEvents] = useState<SecurityEvent[]>([]);
 
-  // Simulate new events
+  // Convert threat data to security events
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (Math.random() < 0.3) {
-        const newEvent: SecurityEvent = {
-          id: Date.now(),
-          eventType: "threat_detection",
-          source: `192.168.1.${Math.floor(Math.random() * 255)}`,
-          message: "Suspicious network activity detected",
-          severity: ['low', 'medium', 'high'][Math.floor(Math.random() * 3)],
-          timestamp: new Date()
-        };
-        setEvents(prev => [newEvent, ...prev.slice(0, 4)]);
-      }
-    }, 15000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const realtimeEvents = events;
+    const latestThreats = activeThreats.slice(-20).reverse(); // Get latest 20 threats
+    const securityEvents = latestThreats.map((threat, index) => ({
+      id: `${threat.id}_${index}_${Date.now()}`, // Ensure unique IDs with timestamp
+      eventType: threat.threatType.toLowerCase().replace(/\s+/g, '_'),
+      source: threat.sourceIp,
+      message: threat.description,
+      severity: threat.severity,
+      timestamp: threat.timestamp
+    }));
+    
+    setEvents(securityEvents);
+  }, [activeThreats]);
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
@@ -82,52 +57,111 @@ const ActivityFeed: React.FC = () => {
     return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
   };
 
-  const displayEvents = Array.isArray(realtimeEvents) ? realtimeEvents.slice(0, 5) : [];
+  const getEventIcon = (eventType: string) => {
+    if (eventType.includes('apt') || eventType.includes('attack')) {
+      return <Target className="h-4 w-4 text-red-500" />;
+    } else if (eventType.includes('malware') || eventType.includes('ransomware')) {
+      return <Shield className="h-4 w-4 text-yellow-500" />;
+    } else if (eventType.includes('ddos')) {
+      return <Zap className="h-4 w-4 text-orange-500" />;
+    } else if (eventType.includes('phishing')) {
+      return <AlertTriangle className="h-4 w-4 text-red-500" />;
+    } else {
+      return <Activity className="h-4 w-4 text-blue-500" />;
+    }
+  };
+
+  const displayEvents = events.slice(0, 10);
 
   return (
-    <div className="glass-panel rounded-xl p-6">
-      <h3 className="font-orbitron text-lg text-[var(--cyber-cyan)] mb-4">Activity Feed</h3>
-      <div className="space-y-3 h-64 overflow-y-auto">
-        {displayEvents.map((event) => (
-          <div key={event.id} className="flex items-start space-x-3 p-3 bg-[var(--cyber-dark)]/50 rounded-lg">
-            <div className={`w-2 h-2 ${getSeverityColor(event.severity)} rounded-full mt-2 animate-pulse`}></div>
-            <div className="flex-1">
-              <div className="text-sm text-white">{event.message}</div>
-              <div className="text-xs text-gray-400">{event.source} - {getTimeAgo(event.timestamp!)}</div>
+    <Card className="glass-panel border-[var(--cyber-cyan)]/30">
+      <CardHeader>
+        <CardTitle className="font-orbitron mt-3 text-[var(--cyber-cyan)] flex items-center">
+          <Activity className="w-5 h-5 mr-2 " />
+          Live Activity Feed
+          <Badge variant="outline" className="ml-2 bg-red-500/20 text-red-400">
+            {threatStats.totalThreats} Active
+          </Badge>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3 max-h-[800px] overflow-y-auto">
+          {displayEvents.length === 0 ? (
+            <div className="text-center text-gray-400 py-8">
+              <Activity className="w-12 h-12 mx-auto mb-3 opacity-50" />
+              <p>Loading real-time threat data...</p>
+            </div>
+          ) : (
+            displayEvents.map((event) => (
+              <div
+                key={event.id}
+                className="flex items-start space-x-3 p-3 rounded-lg bg-[var(--cyber-navy)]/30 hover:bg-[var(--cyber-navy)]/50 transition-colors cursor-pointer"
+                onClick={() => {
+                  console.log('Event clicked:', event);
+                }}
+              >
+                <div className="flex-shrink-0 mt-1">
+                  {getEventIcon(event.eventType)}
+                </div>
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <span className="text-sm font-medium text-white truncate">
+                      {event.source}
+                    </span>
+                    <span className={`inline-block w-2 h-2 rounded-full ${getSeverityColor(event.severity)}`}></span>
+                    <span className="text-xs text-gray-400">
+                      {getTimeAgo(event.timestamp)}
+                    </span>
+                  </div>
+                  
+                  <p className="text-sm text-gray-300 mb-2">
+                    {event.message}
+                  </p>
+                  
+                  <div className="flex items-center space-x-2">
+                    <Badge className={`text-xs ${
+                      event.severity === 'critical' ? 'bg-red-500/20 text-red-400' :
+                      event.severity === 'high' ? 'bg-orange-500/20 text-orange-400' :
+                      event.severity === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
+                      'bg-green-500/20 text-green-400'
+                    }`}>
+                      {event.severity.toUpperCase()}
+                    </Badge>
+                    
+                    <span className="text-xs text-gray-500">
+                      {event.eventType.replace(/_/g, ' ')}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+        
+        {/* Real-time stats */}
+        <div className="mt-4 pt-3 border-t border-[var(--cyber-cyan)]/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+            <div className="text-center">
+              <div className="text-red-400 font-bold">{threatStats.criticalThreats}</div>
+              <div className="text-gray-400">Critical</div>
+            </div>
+            <div className="text-center">
+              <div className="text-orange-400 font-bold">{threatStats.highThreats}</div>
+              <div className="text-gray-400">High</div>
+            </div>
+            <div className="text-center">
+              <div className="text-yellow-400 font-bold">{threatStats.mediumThreats}</div>
+              <div className="text-gray-400">Medium</div>
+            </div>
+            <div className="text-center">
+              <div className="text-green-400 font-bold">{threatStats.lowThreats}</div>
+              <div className="text-gray-400">Low</div>
             </div>
           </div>
-        ))}
-        
-        {/* Fallback static events if no data */}
-        {displayEvents.length === 0 && (
-          <>
-            <div className="flex items-start space-x-3 p-3 bg-[var(--cyber-dark)]/50 rounded-lg">
-              <div className="w-2 h-2 bg-[var(--cyber-red)] rounded-full mt-2 animate-pulse"></div>
-              <div className="flex-1">
-                <div className="text-sm text-white">Critical APT29 activity detected</div>
-                <div className="text-xs text-gray-400">192.168.1.45 - 2 minutes ago</div>
-              </div>
-            </div>
-            
-            <div className="flex items-start space-x-3 p-3 bg-[var(--cyber-dark)]/50 rounded-lg">
-              <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
-              <div className="flex-1">
-                <div className="text-sm text-white">Suspicious PowerShell execution</div>
-                <div className="text-xs text-gray-400">DESKTOP-ABC123 - 5 minutes ago</div>
-              </div>
-            </div>
-            
-            <div className="flex items-start space-x-3 p-3 bg-[var(--cyber-dark)]/50 rounded-lg">
-              <div className="w-2 h-2 bg-[var(--cyber-cyan)] rounded-full mt-2"></div>
-              <div className="flex-1">
-                <div className="text-sm text-white">ML model updated successfully</div>
-                <div className="text-xs text-gray-400">TactiCore Kernel - 8 minutes ago</div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

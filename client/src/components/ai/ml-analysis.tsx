@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { 
   Brain, 
   TrendingUp, 
@@ -14,7 +20,18 @@ import {
   Eye, 
   Shield,
   AlertTriangle,
-  CheckCircle
+  CheckCircle,
+  Play,
+  Pause,
+  Square,
+  Trash2,
+  Edit,
+  Save,
+  X,
+  Search,
+  FileText,
+  Download,
+  Upload
 } from "lucide-react";
 
 interface AiModel {
@@ -64,9 +81,11 @@ const mockAnalysisResults: AnalysisResult[] = [
 ];
 
 export default function MLAnalysis() {
+  const { toast } = useToast();
   const [selectedModel, setSelectedModel] = useState<string>("tacticore");
   const [trainingProgress, setTrainingProgress] = useState(78);
-  const [aiModels] = useState<AiModel[]>([
+  const [isTraining, setIsTraining] = useState(true);
+  const [aiModels, setAiModels] = useState<AiModel[]>([
     {
       id: 1,
       name: "TactiCore Kernel",
@@ -86,6 +105,127 @@ export default function MLAnalysis() {
       responseTime: 0.5
     }
   ]);
+  const [selectedAnalysis, setSelectedAnalysis] = useState<AnalysisResult | null>(null);
+  const [isConfiguring, setIsConfiguring] = useState(false);
+  const [configuringModel, setConfiguringModel] = useState<AiModel | null>(null);
+  const [trainingJobs, setTrainingJobs] = useState([
+    { id: 1, name: 'Behavioral Analysis Model v3.0', dataset: '500K samples', priority: 'high', status: 'queued' },
+    { id: 2, name: 'Network Anomaly Detector v1.2', dataset: '1.2M samples', priority: 'medium', status: 'queued' },
+    { id: 3, name: 'Malware Classification Model', dataset: '750K samples', priority: 'low', status: 'queued' }
+  ]);
+
+  // Simulate training progress
+  useEffect(() => {
+    if (isTraining) {
+      const interval = setInterval(() => {
+        setTrainingProgress(prev => {
+          if (prev >= 100) {
+            setIsTraining(false);
+            toast({
+              title: "Training Complete",
+              description: "Advanced Threat Detection Model v2.1 training completed successfully!",
+            });
+            return 100;
+          }
+          return prev + Math.random() * 2;
+        });
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [isTraining, toast]);
+
+  // Model configuration handlers
+  const handleConfigureModel = (model: AiModel) => {
+    setConfiguringModel(model);
+    setIsConfiguring(true);
+  };
+
+  const handleSaveModelConfig = () => {
+    if (configuringModel) {
+      setAiModels(prev => prev.map(m => 
+        m.id === configuringModel.id ? configuringModel : m
+      ));
+      toast({
+        title: "Configuration Saved",
+        description: `${configuringModel.name} configuration has been updated.`,
+      });
+      setIsConfiguring(false);
+      setConfiguringModel(null);
+    }
+  };
+
+  const handleRetrainModel = (model: AiModel) => {
+    setAiModels(prev => prev.map(m => 
+      m.id === model.id ? { ...m, status: 'training' } : m
+    ));
+    toast({
+      title: "Retraining Started",
+      description: `${model.name} retraining has been initiated.`,
+    });
+    
+    // Simulate retraining completion
+    setTimeout(() => {
+      setAiModels(prev => prev.map(m => 
+        m.id === model.id ? { ...m, status: 'active', accuracy: Math.min(100, m.accuracy + Math.random() * 5) } : m
+      ));
+      toast({
+        title: "Retraining Complete",
+        description: `${model.name} retraining completed successfully!`,
+      });
+    }, 10000);
+  };
+
+  // Analysis handlers
+  const handleInvestigateAnalysis = (analysis: AnalysisResult) => {
+    setSelectedAnalysis(analysis);
+    toast({
+      title: "Investigation Started",
+      description: `Investigating ${analysis.type} with ${analysis.confidence}% confidence.`,
+    });
+  };
+
+  const handleDismissAnalysis = (analysisId: string) => {
+    toast({
+      title: "Analysis Dismissed",
+      description: "The analysis result has been dismissed and archived.",
+    });
+  };
+
+  // Prediction handlers
+  const handlePrepareDefenses = (threat: string) => {
+    toast({
+      title: "Defenses Prepared",
+      description: `Automated defenses have been configured for ${threat}.`,
+    });
+  };
+
+  // Training handlers
+  const handlePauseTraining = () => {
+    setIsTraining(false);
+    toast({
+      title: "Training Paused",
+      description: "Model training has been paused. You can resume it anytime.",
+    });
+  };
+
+  const handleStopTraining = () => {
+    setIsTraining(false);
+    setTrainingProgress(0);
+    toast({
+      title: "Training Stopped",
+      description: "Model training has been stopped and reset.",
+    });
+  };
+
+  const handleStartTrainingJob = (jobId: number) => {
+    setTrainingJobs(prev => prev.map(job => 
+      job.id === jobId ? { ...job, status: 'training' } : job
+    ));
+    toast({
+      title: "Training Job Started",
+      description: "Training job has been added to the active queue.",
+    });
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -221,11 +361,24 @@ export default function MLAnalysis() {
                     <div className="mt-3 space-y-2">
                       <Progress value={model.accuracy} className="w-full" />
                       <div className="flex space-x-2">
-                        <Button size="sm" variant="outline" className="flex-1">
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          className="flex-1"
+                          onClick={() => handleConfigureModel(model)}
+                        >
+                          <Settings className="w-3 h-3 mr-1" />
                           Configure
                         </Button>
-                        <Button size="sm" variant="outline" className="flex-1">
-                          Retrain
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          className="flex-1"
+                          onClick={() => handleRetrainModel(model)}
+                          disabled={model.status === 'training'}
+                        >
+                          <Zap className="w-3 h-3 mr-1" />
+                          {model.status === 'training' ? 'Training...' : 'Retrain'}
                         </Button>
                       </div>
                     </div>
@@ -336,8 +489,22 @@ export default function MLAnalysis() {
                         </span>
                       </div>
                       <div className="flex space-x-2">
-                        <Button size="sm" variant="outline">Investigate</Button>
-                        <Button size="sm" variant="outline">Dismiss</Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => handleInvestigateAnalysis(result)}
+                        >
+                          <Search className="w-3 h-3 mr-1" />
+                          Investigate
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => handleDismissAnalysis(result.id)}
+                        >
+                          <X className="w-3 h-3 mr-1" />
+                          Dismiss
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -384,7 +551,13 @@ export default function MLAnalysis() {
                       </div>
                     </div>
                     
-                    <Button size="sm" variant="outline" className="w-full mt-3">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="w-full mt-3"
+                      onClick={() => handlePrepareDefenses(prediction.threat)}
+                    >
+                      <Shield className="w-3 h-3 mr-1" />
                       Prepare Defenses
                     </Button>
                   </div>
@@ -434,10 +607,23 @@ export default function MLAnalysis() {
                   </div>
                   
                   <div className="flex space-x-2 mt-4">
-                    <Button size="sm" variant="outline" className="flex-1">
-                      Pause Training
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex-1"
+                      onClick={handlePauseTraining}
+                      disabled={!isTraining}
+                    >
+                      <Pause className="w-3 h-3 mr-1" />
+                      {isTraining ? 'Pause Training' : 'Paused'}
                     </Button>
-                    <Button size="sm" variant="destructive" className="flex-1">
+                    <Button 
+                      size="sm" 
+                      variant="destructive" 
+                      className="flex-1"
+                      onClick={handleStopTraining}
+                    >
+                      <Square className="w-3 h-3 mr-1" />
                       Stop Training
                     </Button>
                   </div>
@@ -466,7 +652,15 @@ export default function MLAnalysis() {
                           }>
                             {job.priority}
                           </Badge>
-                          <Button size="sm" variant="outline">Start</Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            onClick={() => handleStartTrainingJob(job.id)}
+                            disabled={job.status === 'training'}
+                          >
+                            <Play className="w-3 h-3 mr-1" />
+                            {job.status === 'training' ? 'Running' : 'Start'}
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -477,6 +671,199 @@ export default function MLAnalysis() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Model Configuration Dialog */}
+      <Dialog open={isConfiguring} onOpenChange={setIsConfiguring}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-[var(--cyber-cyan)]">
+              Configure {configuringModel?.name}
+            </DialogTitle>
+          </DialogHeader>
+          {configuringModel && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="model-name">Model Name</Label>
+                  <Input
+                    id="model-name"
+                    value={configuringModel.name}
+                    onChange={(e) => setConfiguringModel({...configuringModel, name: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="model-type">Model Type</Label>
+                  <Select
+                    value={configuringModel.type}
+                    onValueChange={(value) => setConfiguringModel({...configuringModel, type: value})}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="tacticore">TactiCore</SelectItem>
+                      <SelectItem value="mission_ops">Mission Ops</SelectItem>
+                      <SelectItem value="behavioral">Behavioral Analysis</SelectItem>
+                      <SelectItem value="network">Network Analysis</SelectItem>
+                      <SelectItem value="malware">Malware Detection</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="response-time">Response Time (ms)</Label>
+                  <Input
+                    id="response-time"
+                    type="number"
+                    value={configuringModel.responseTime}
+                    onChange={(e) => setConfiguringModel({...configuringModel, responseTime: parseFloat(e.target.value)})}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="model-status">Status</Label>
+                  <Select
+                    value={configuringModel.status}
+                    onValueChange={(value) => setConfiguringModel({...configuringModel, status: value})}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="training">Training</SelectItem>
+                      <SelectItem value="maintenance">Maintenance</SelectItem>
+                      <SelectItem value="offline">Offline</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="model-description">Configuration Notes</Label>
+                <Textarea
+                  id="model-description"
+                  placeholder="Add configuration notes, parameter adjustments, or training details..."
+                  rows={3}
+                />
+              </div>
+
+              <div className="flex justify-end space-x-2">
+                <Button variant="outline" onClick={() => setIsConfiguring(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={handleSaveModelConfig}>
+                  <Save className="w-4 h-4 mr-2" />
+                  Save Configuration
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Investigation Details Dialog */}
+      <Dialog open={!!selectedAnalysis} onOpenChange={(open) => !open && setSelectedAnalysis(null)}>
+        <DialogContent className="max-w-4xl">
+          <DialogHeader>
+            <DialogTitle className="text-[var(--cyber-cyan)]">
+              Analysis Investigation: {selectedAnalysis?.type}
+            </DialogTitle>
+          </DialogHeader>
+          {selectedAnalysis && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-white mb-3">Analysis Details</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Type:</span>
+                      <span className="text-white">{selectedAnalysis.type}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Confidence:</span>
+                      <span className={`font-bold ${getConfidenceColor(selectedAnalysis.confidence)}`}>
+                        {selectedAnalysis.confidence}%
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Severity:</span>
+                      <Badge className={`${getStatusColor(selectedAnalysis.status)} text-white`}>
+                        {selectedAnalysis.status.toUpperCase()}
+                      </Badge>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-400">Detected:</span>
+                      <span className="text-white">{getTimeAgo(selectedAnalysis.timestamp)}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-white mb-3">Recommended Actions</h3>
+                  <div className="space-y-2">
+                    {selectedAnalysis.status === 'critical' && (
+                      <>
+                        <div className="flex items-center space-x-2 text-red-400">
+                          <AlertTriangle className="w-4 h-4" />
+                          <span>Immediate isolation required</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-red-400">
+                          <Shield className="w-4 h-4" />
+                          <span>Activate emergency protocols</span>
+                        </div>
+                      </>
+                    )}
+                    <div className="flex items-center space-x-2 text-yellow-400">
+                      <Eye className="w-4 h-4" />
+                      <span>Monitor affected systems</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-blue-400">
+                      <FileText className="w-4 h-4" />
+                      <span>Document incident details</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-white mb-3">Description</h3>
+                <p className="text-gray-300 bg-[var(--cyber-dark)]/30 p-4 rounded-lg">
+                  {selectedAnalysis.description}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-white mb-3">Investigation Report</h3>
+                <div className="bg-[var(--cyber-dark)]/30 p-4 rounded-lg">
+                  <div className="space-y-2 text-sm text-gray-300">
+                    <p><strong>Timestamp:</strong> {selectedAnalysis.timestamp.toLocaleString()}</p>
+                    <p><strong>Analysis ID:</strong> {selectedAnalysis.id}</p>
+                    <p><strong>AI Model:</strong> TactiCore Behavioral Analysis Engine</p>
+                    <p><strong>Detection Method:</strong> Pattern recognition and statistical analysis</p>
+                    <p><strong>False Positive Rate:</strong> {(100 - selectedAnalysis.confidence).toFixed(1)}%</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-end space-x-2">
+                <Button variant="outline" onClick={() => setSelectedAnalysis(null)}>
+                  Close
+                </Button>
+                <Button onClick={() => handleDismissAnalysis(selectedAnalysis.id)}>
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Mark as Resolved
+                </Button>
+                <Button variant="destructive">
+                  <Download className="w-4 h-4 mr-2" />
+                  Export Report
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
