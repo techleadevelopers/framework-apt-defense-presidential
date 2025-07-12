@@ -85,7 +85,7 @@ const ActivityFeed: React.FC = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-3 max-h-[800px] overflow-y-auto">
+        <div className="space-y-3 max-h-[800px] overflow-y-auto futuristic-scrollbar">
           {displayEvents.length === 0 ? (
             <div className="text-center text-gray-400 py-8">
               <Activity className="w-12 h-12 mx-auto mb-3 opacity-50" />

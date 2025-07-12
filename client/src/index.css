@@ -34,17 +34,40 @@
   --cyber-teal: hsl(174, 56%, 55%);
   --cyber-gray: hsl(210, 22%, 32%);
   --cyber-medium: hsl(210, 18%, 38%);
+
+  /* New variables for map source styles */
+  --map-bg: var(--cyber-navy); /* Matches $bg */
+  --map-general-text-color: hsl(225, 10%, 50%); /* Approximation of #525f83 */
+  --map-credit-text-color-darken: hsl(225, 10%, 30%); /* Darkened version of map-general-text-color */
+  --map-btn-color: var(--map-general-text-color);
+  --map-btn-border-color: hsl(225, 10%, 20%); /* desaturate(lighten($bg, 20%), 40%) */
+  --map-animate-btn-color: hsl(225, 10%, 45%); /* Approximation of #59648e */
+  --map-animate-btn-hover-color-light: hsl(225, 10%, 75%); /* Lightened by 30% */
+  --map-animate-btn-hover-color-lighter: hsl(225, 10%, 85%); /* Lightened by 40% */
+  --map-animate-btn-border-darken: hsl(225, 10%, 20%); /* Darkened by 30% */
+  --map-animate-btn-border-darken-less: hsl(225, 10%, 40%); /* Darkened by 10% */
+
+  /* Font family for map source */
+  --map-font-mono: 'menlo', 'source-code-pro', 'andale mono', 'courier new', sans-serif;
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box; /* Added from map source */
   }
 
   body {
     @apply font-mono antialiased bg-[var(--cyber-dark)] text-[var(--foreground)];
     background: linear-gradient(135deg, var(--cyber-dark) 0%, var(--cyber-navy) 100%);
     overflow-x: hidden;
+  }
+
+  /* Global SVG style from map source */
+  /* This might affect other SVGs if not carefully managed. */
+  svg {
+    display: block;
+    margin: 0;
   }
 }
 
@@ -93,6 +116,229 @@
 
   .font-code {
     font-family: 'Source Code Pro', monospace;
+  }
+
+  /* Estilos futuristas para a barra de rolagem */
+  .futuristic-scrollbar {
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: var(--cyber-cyan) var(--cyber-navy); /* Para Firefox */
+  }
+
+  /* Para navegadores baseados em Webkit (Chrome, Safari, Edge) */
+  .futuristic-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+  }
+
+  .futuristic-scrollbar::-webkit-scrollbar-track {
+    background: var(--cyber-navy); /* Cor do fundo da trilha da barra de rolagem */
+    border-radius: 10px;
+  }
+
+  .futuristic-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--cyber-cyan); /* Cor do "polegar" da barra de rolagem */
+    border-radius: 10px;
+    border: 2px solid var(--cyber-navy); /* Borda para destacar */
+  }
+
+  .futuristic-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(191, 100%, 60%); /* Cor ao passar o mouse */
+  }
+
+  /* --- Map Source CSS Integration --- */
+
+  /* Styles for the container of the map SVG (equivalent to .container in original map source) */
+  .map-container-wrapper {
+    position: relative;
+    display: block;
+    max-width: 1100px; /* From original */
+    width: 100%; /* From original */
+    margin: auto; /* From original */
+    padding: 0; /* From original */
+    /* The aspect ratio handling (padding-top: 50%) is typically done via Tailwind classes like aspect-w-16 aspect-h-9 or fixed height */
+  }
+
+  .map-container-wrapper::before {
+    padding-top: 50%; /* Aspect ratio */
+    content: ' ';
+    display: block;
+    width: 1px;
+  }
+
+  /* Styles for the SVG element itself within its container (equivalent to .container svg in original map source) */
+  .map-svg-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* General H1 style if used for map titles */
+  .map-title-h1 {
+    font-weight: normal;
+    padding: 60px 0 0;
+    font-size: 24px;
+    color: #fff; /* Changed from #239C9C to white for better contrast with dark theme */
+  }
+
+  .map-title-h1 + p { /* Paragraph immediately following an h1 */
+    margin: auto;
+    padding: 0 0 40px;
+    font-size: 14px;
+  }
+
+  .map-credit-section {
+    max-width: 700px;
+    padding: 40px 0 80px;
+    text-align: center;
+    color: var(--map-credit-text-color-darken);
+    font-size: 11px;
+    line-height: 1.6;
+    font-weight: 300;
+    margin: auto;
+  }
+
+  .map-credit-section a {
+    color: var(--map-credit-text-color-darken);
+    text-decoration: underline;
+  }
+
+  .map-credit-section a:hover {
+    color: var(--map-animate-btn-hover-color-light); /* lighten(#59648e, 20%) */
+  }
+
+  .map-controls-section {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 160px;
+    color: #fff;
+  }
+
+  .map-controls-section::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(to left, #DF5862, #F3B142);
+    display: block;
+    height: 3px;
+    width: calc(100% - 10px);
+    content: '';
+  }
+
+  .map-controls-section p {
+    margin: 0;
+  }
+
+  .map-curr-time,
+  .map-curr-date {
+    margin-top: 20px;
+    font-size: 0; /* Hides text by default, span will show it */
+    cursor: default;
+  }
+
+  .map-curr-date {
+    margin-top: -10px;
+    text-transform: uppercase;
+  }
+
+  .map-curr-time > span,
+  .map-curr-date > span {
+    display: inline-block;
+    width: 80px;
+    line-height: 36px;
+    height: 100%;
+    font-size: 20px;
+  }
+
+  .map-curr-date > span {
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  .map-curr-time > span > span { /* Inner span for smaller text */
+    position: absolute;
+    font-size: 10px;
+    top: -20px;
+    opacity: 0.5;
+    font-weight: 300;
+    letter-spacing: 1px;
+    right: 48px;
+  }
+
+  .map-curr-time a,
+  .map-curr-date a {
+    color: #fff;
+    opacity: 0.2;
+    text-decoration: none;
+    font-size: 16px;
+    width: 15px;
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    line-height: 36px;
+  }
+
+  .map-curr-time:hover a,
+  .map-curr-date:hover a {
+    opacity: 0.4;
+  }
+
+  .map-curr-time a:hover,
+  .map-curr-date a:hover {
+    opacity: 0.8 !important;
+  }
+
+  .map-curr-time a.big-jump,
+  .map-curr-date a.big-jump {
+    opacity: 0; /* Hidden by default */
+  }
+
+  .map-curr-time:hover a.big-jump,
+  .map-curr-date:hover a.big-jump {
+    opacity: 0.4; /* Show on hover */
+  }
+
+  .map-animate-button-container {
+    text-align: center;
+    font-family: var(--map-font-mono);
+  }
+
+  .map-animate-button-container a {
+    display: inline-block;
+    width: auto;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--map-animate-btn-color);
+    line-height: 16px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    width: 130px;
+    text-decoration: none;
+    border: solid 1px var(--map-animate-btn-border-darken);
+    font-weight: 300;
+  }
+
+  .map-animate-button-container a:hover {
+    color: var(--map-animate-btn-hover-color-light);
+    border: solid 1px var(--map-animate-btn-border-darken-less);
+  }
+
+  .map-animate-button-container a::before {
+    content: 'Animation Off';
+  }
+
+  .map-animate-button-container a.animating {
+    color: var(--map-animate-btn-hover-color-light);
+  }
+
+  .map-animate-button-container a.animating:hover {
+    color: var(--map-animate-btn-hover-color-lighter);
+  }
+
+  .map-animate-button-container a.animating::before {
+    content: 'Animation On';
   }
 }
 
