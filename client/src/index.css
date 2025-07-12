@@ -365,3 +365,187 @@
 .animate-pulse-slow {
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+
+/*
+  ==============================================
+  RESPONSIVIDADE MOBILE ROBUSTA E AVANÇADA
+  ==============================================
+*/
+
+/* --- Media Query para Telas Pequenas (Smartphones) --- */
+@media (max-width: 768px) {
+  body {
+    /* Ajustes gerais para corpo em telas menores */
+    font-size: 14px; /* Fonte ligeiramente menor para legibilidade */
+  }
+
+  /* Ajustes para elementos de layout principais */
+  .sidebar { /* Exemplo: se você tiver uma sidebar */
+    width: 100%; /* Ocupa largura total */
+    height: auto; /* Altura flexível */
+    position: relative; /* Ou absolute, dependendo da sua estratégia de navegação mobile */
+    /* Você pode adicionar 'display: none;' e controlar com JS para um menu hambúrguer */
+  }
+
+  .main-content { /* Exemplo: conteúdo principal da dashboard */
+    margin-left: 0; /* Remove margem lateral que seria da sidebar */
+    padding: 15px; /* Reduz o preenchimento geral */
+  }
+
+  .glass-panel {
+    /* Reduzir o preenchimento ou ajustar o tamanho */
+    padding: 15px;
+    margin-bottom: 20px; /* Garante espaçamento entre painéis empilhados */
+  }
+
+  /* Ajustes para o mapa e seus controles */
+  .map-container-wrapper {
+    /* Ocupa mais largura em mobile */
+    max-width: 100%;
+    padding: 0 10px; /* Pequeno preenchimento lateral */
+  }
+
+  .map-title-h1 {
+    font-size: 20px; /* Reduz tamanho da fonte do título */
+    padding: 30px 0 0;
+  }
+
+  .map-title-h1 + p {
+    font-size: 12px;
+    padding: 0 0 20px;
+  }
+
+  .map-controls-section {
+    position: relative; /* Ou ajuste para melhor posicionamento em mobile */
+    width: 100%; /* Ocupa largura total */
+    text-align: center; /* Centraliza controles */
+    margin-top: 20px; /* Espaçamento do conteúdo acima */
+  }
+
+  .map-curr-time > span,
+  .map-curr-date > span {
+    width: auto; /* Largura automática */
+    font-size: 18px; /* Ligeiramente menor */
+    line-height: 30px;
+  }
+
+  .map-curr-date > span {
+    font-size: 12px;
+  }
+
+  .map-curr-time > span > span {
+    position: static; /* Remove posicionamento absoluto se causar problemas */
+    display: block; /* Para aparecer em linha própria */
+    font-size: 9px;
+    text-align: center;
+    right: auto; /* Remove right */
+  }
+
+  .map-animate-button-container a {
+    width: 100px; /* Ajusta largura do botão de animação */
+    padding: 8px 15px;
+    font-size: 10px;
+  }
+
+  /* Exemplo para grids ou elementos flex que se empilham */
+  .grid-container {
+    grid-template-columns: 1fr; /* Colunas empilhadas */
+    gap: 15px; /* Reduz espaçamento */
+  }
+
+  .flex-row-wrap {
+    flex-direction: column; /* Transforma linha em coluna */
+    align-items: center; /* Centraliza itens */
+  }
+}
+
+/* --- Media Query para Smartphones Pequenos (ex: iPhone SE, etc.) --- */
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+
+  .main-content {
+    padding: 10px; /* Ainda menos preenchimento */
+  }
+
+  .glass-panel {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .map-title-h1 {
+    font-size: 18px;
+    padding: 20px 0 0;
+  }
+
+  .map-title-h1 + p {
+    font-size: 11px;
+    padding: 0 0 15px;
+  }
+
+  .map-credit-section {
+    padding: 20px 10px 40px; /* Mais preenchimento lateral */
+    font-size: 10px;
+  }
+
+  .map-curr-time > span,
+  .map-curr-date > span {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .map-curr-date > span {
+    font-size: 10px;
+  }
+
+  .map-curr-time > span > span {
+    font-size: 8px;
+  }
+
+  .map-animate-button-container a {
+    width: 90px;
+    padding: 6px 10px;
+    font-size: 9px;
+  }
+}
+
+/* --- Media Query para Telas Muito Pequenas (Largura Mínima Garantida) --- */
+@media (max-width: 375px) {
+  body {
+    font-size: 12px;
+  }
+
+  .main-content {
+    padding: 8px;
+  }
+
+  .glass-panel {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .map-title-h1 {
+    font-size: 16px;
+  }
+
+  .map-curr-time > span,
+  .map-curr-date > span {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .map-animate-button-container a {
+    width: 80px;
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+}
+
+/* --- Regras Gerais de Fluidez para Imagens e Elementos de Mídia --- */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Garante que elementos de mídia se comportem como blocos */
+}
