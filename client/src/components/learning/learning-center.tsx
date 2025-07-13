@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import EnterpriseLearningPlatform from "./enterprise-learning-platform";
+import EnterpriseCertificationSystem from "./enterprise-certification-system";
+import { CertificationManager } from "./digital-certificate";
 import { 
   GraduationCap, 
   Award, 
@@ -17,7 +20,13 @@ import {
   Lock,
   Play,
   FileText,
-  Zap
+  Zap,
+  Crown,
+  Building,
+  Rocket,
+  Diamond,
+  Brain,
+  Globe
 } from "lucide-react";
 
 interface Course {
@@ -2163,7 +2172,7 @@ export default function LearningCenter() {
 
       {/* Main Learning Interface */}
       <Tabs defaultValue="courses" className="w-full">
-        <TabsList className="grid w-full grid-cols-6 bg-[var(--cyber-navy)]">
+        <TabsList className="grid w-full grid-cols-8 bg-[var(--cyber-navy)]">
           <TabsTrigger value="courses" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
             <BookOpen className="w-4 h-4 mr-2" />
             Courses
@@ -2187,6 +2196,14 @@ export default function LearningCenter() {
           <TabsTrigger value="career" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
             <Target className="w-4 h-4 mr-2" />
             Career
+          </TabsTrigger>
+          <TabsTrigger value="enterprise-platform" className="enterprise-tab data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
+            <Building className="w-4 h-4 mr-2" />
+            Enterprise
+          </TabsTrigger>
+          <TabsTrigger value="premium-certs" className="data-[state=active]:bg-[var(--cyber-cyan)] data-[state=active]:text-[var(--cyber-dark)]">
+            <Crown className="w-4 h-4 mr-2" />
+            Premium
           </TabsTrigger>
         </TabsList>
 
@@ -2622,67 +2639,7 @@ export default function LearningCenter() {
         </TabsContent>
 
         <TabsContent value="certifications" className="space-y-6">
-          <Card className="glass-panel border-[var(--cyber-cyan)]/30">
-            <CardHeader>
-              <CardTitle className="font-orbitron text-[var(--cyber-cyan)]">Certification Paths</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {mockCertifications.map((cert) => (
-                  <div key={cert.id} className="bg-[var(--cyber-dark)]/50 border border-[var(--cyber-cyan)]/20 rounded-lg p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="font-semibold text-white text-lg mb-1">{cert.name}</h3>
-                        <div className="flex items-center space-x-2 text-sm">
-                          <span className="text-gray-400">Issued by:</span>
-                          <span className="text-[var(--cyber-cyan)]">{cert.issuer}</span>
-                          <Badge variant="outline">{cert.level}</Badge>
-                        </div>
-                      </div>
-                      {cert.earned && <Award className="w-8 h-8 text-yellow-400" />}
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <div className="flex justify-between text-sm mb-2">
-                          <span className="text-gray-400">Progress</span>
-                          <span className="text-[var(--cyber-cyan)]">{cert.progress}%</span>
-                        </div>
-                        <Progress value={cert.progress} className="w-full" />
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-medium text-white mb-2">Requirements:</h4>
-                          <ul className="space-y-1">
-                            {cert.requirements.map((req, index) => (
-                              <li key={index} className="flex items-center space-x-2 text-sm">
-                                <CheckCircle className="w-3 h-3 text-green-400" />
-                                <span className="text-gray-300">{req}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <div className="flex items-center space-x-2 text-sm mb-2">
-                            <Clock className="w-4 h-4 text-gray-400" />
-                            <span className="text-gray-400">Duration: {cert.duration}</span>
-                          </div>
-                          <Button 
-                            className="w-full bg-[var(--cyber-cyan)] text-[var(--cyber-dark)] hover:bg-cyan-400"
-                            disabled={cert.progress === 0}
-                          >
-                            {cert.progress === 0 ? 'Prerequisites Required' : 'Continue Path'}
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <CertificationManager />
         </TabsContent>
 
         {/* Leaderboard Tab */}
@@ -3095,6 +3052,16 @@ export default function LearningCenter() {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        {/* Enterprise Platform Tab */}
+        <TabsContent value="enterprise-platform" className="space-y-6">
+          <EnterpriseLearningPlatform />
+        </TabsContent>
+
+        {/* Premium Certifications Tab */}
+        <TabsContent value="premium-certs" className="space-y-6">
+          <EnterpriseCertificationSystem />
         </TabsContent>
       </Tabs>
     </div>

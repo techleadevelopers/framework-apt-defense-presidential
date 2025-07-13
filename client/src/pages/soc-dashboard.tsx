@@ -26,6 +26,7 @@ import VulnerabilityManagement from "@/components/vulnerabilities/vulnerability-
 import AssetManagement from "@/components/assets/asset-management";
 import SOARAutomation from "@/components/automation/soar-automation";
 import ComplianceReporting from "@/components/compliance/compliance-reporting";
+import IntelligentHudGuide from "@/components/ui/intelligent-hud-guide";
 import { useRealApiData } from "@/hooks/use-real-api-data";
 
 export type TabType = 
@@ -72,20 +73,53 @@ export default function SOCDashboard() {
       case "dashboard":
         return (
           <div className="space-y-6">
-            <AiStatusPanel />
-            <MetricsPanel />
-            <ThreatMap />
+            <div className="ai-status-panel">
+              <AiStatusPanel />
+            </div>
+            <div className="metrics-panel">
+              <MetricsPanel />
+            </div>
+            <div className="threat-map">
+              <ThreatMap />
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ActivityFeed />
+              <div className="activity-feed">
+                <ActivityFeed />
+              </div>
               <ApiStatusPanel onRefreshApis={refreshData} isRefreshing={isLoading} />
             </div>
-            <MitreFramework />
+            <div className="mitre-framework">
+              <MitreFramework />
+            </div>
+            <IntelligentHudGuide 
+              guideId="soc-dashboard" 
+              autoStart={true}
+              showOnlyOnce={true}
+            />
           </div>
         );
       case "threats":
-        return <ThreatList />;
+        return (
+          <>
+            <ThreatList />
+            <IntelligentHudGuide 
+              guideId="threat-detection" 
+              autoStart={true}
+              showOnlyOnce={true}
+            />
+          </>
+        );
       case "scanner":
-        return <EnterpriseNetworkScanner />;
+        return (
+          <>
+            <EnterpriseNetworkScanner />
+            <IntelligentHudGuide 
+              guideId="network-scanner" 
+              autoStart={true}
+              showOnlyOnce={true}
+            />
+          </>
+        );
       case "simulation":
         return <AttackSimulation />;
       case "intelligence":
@@ -95,7 +129,16 @@ export default function SOCDashboard() {
       case "sentinel":
         return <SurveillanceSystem />;
       case "learning":
-        return <LearningCenter />;
+        return (
+          <>
+            <LearningCenter />
+            <IntelligentHudGuide 
+              guideId="learning-center" 
+              autoStart={true}
+              showOnlyOnce={true}
+            />
+          </>
+        );
       case "real-api":
         return (
           <div className="space-y-6">
