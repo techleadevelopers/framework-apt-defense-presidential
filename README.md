@@ -1,247 +1,223 @@
-# APT Defense Universe SOC - Security Operations Center
+Documentação Técnica do Projeto SOC (Security Operations Center)
+Data: 13 de Julho de 2025
+Autor: Paulo Silas de Campos Filho
+Versão: 1.0 (Situação Atual)
 
-## Overview
+1. Visão Geral do Projeto
 
-This is a comprehensive Security Operations Center (SOC) application designed for cybersecurity threat detection, monitoring, and response. The application provides real-time threat analysis, network scanning, attack simulation, and AI-powered security intelligence in a modern, cyber-themed interface.
-
-## User Preferences
+O projeto "APT Defense Universe" é uma plataforma educacional e de simulação de ponta, projetada para capacitar analistas de segurança cibernética. Ele simula um ambiente de SOC em tempo real, integrando funcionalidades essenciais de detecção, resposta, gerenciamento e análise de ameaças, além de oferecer um robusto centro de aprendizado e certificação. O objetivo principal é fornecer um ambiente prático e imersivo para o desenvolvimento de habilidades em cibersegurança, utilizando dados simulados e, em alguns casos, dados reais de APIs externas para maior realismo.
 
-Preferred communication style: Simple, everyday language.
-
-## System Architecture
-
-### Frontend Architecture (Standalone)
-- **React 18** with TypeScript for type-safe component development
-- **Vite** as the build tool and development server for fast hot module replacement
-- **shadcn/ui** component library built on Radix UI primitives for accessible, customizable UI components
-- **Tailwind CSS** for utility-first styling with custom cyber-themed color variables
-- **Wouter** for lightweight client-side routing
-- **Simulated data streams** for real-time threat monitoring and dashboard updates
-- **Frontend-only architecture** with no backend dependencies
-
-### Data Management
-- **Local state management** using React useState and useEffect hooks
-- **Simulated real-time data** for threat detection, network monitoring, and AI analysis
-- **Mock data generators** for demonstrating SOC functionality
-- **Interval-based updates** to simulate live threat feeds and system monitoring
-
-### Real-time Simulation
-- **Simulated WebSocket events** for threat notifications and system updates
-- **Timed data generation** for activity feeds, threat counters, and AI metrics
-- **Dynamic state updates** to demonstrate real-time SOC operations
-
-## Key Components
-
-### Dashboard & Monitoring
-- **SOC Dashboard**: Central command center with threat metrics, AI status, and global threat map
-- **Real-time Activity Feed**: Live security event streaming with severity-based color coding
-- **AI Status Panel**: TactiCore and Mission Ops kernel monitoring with performance metrics
-- **MITRE ATT&CK Framework**: Visual coverage mapping of attack techniques
-
-### Threat Management
-- **Threat Detection**: Advanced persistent threat (APT) identification and classification
-- **Threat Intelligence**: IOC management, threat actor profiles, and campaign tracking
-- **Real-time Threat Counter**: Live threat detection metrics with WebSocket updates
-
-### Security Tools
-- **Network Scanner**: Device discovery, vulnerability assessment, and network topology mapping
-- **Attack Simulation**: MITRE-based attack scenario testing and red team exercises
-- **SENTINEL Surveillance**: Camera monitoring with AI-powered anomaly detection
-- **ML/AI Analysis**: Behavioral analysis, anomaly detection, and predictive threat modeling
-
-### Learning & Training
-- **Learning Center**: Cybersecurity courses, certifications, and skill development
-- **Achievement System**: Gamified learning with progress tracking and certifications
-
-## Data Flow (Frontend-Only)
-
-1. **Simulated Data Generation**: Mock security events are generated using timers and random data
-2. **State Management**: React state handles threat classification, analysis, and MITRE mappings
-3. **AI Simulation**: Simulated ML models demonstrate behavioral analysis and network anomaly detection
-4. **Interactive Updates**: User actions trigger state changes to demonstrate response workflows
-5. **Dashboard Synchronization**: Components share state updates to maintain consistent SOC visualization
-
-## External Dependencies
+Propósito e Objetivos:
 
-### Core Dependencies
-- **wouter**: Lightweight routing for single-page application navigation
-- **React hooks**: useState and useEffect for local state management and simulated real-time updates
+Educação Imersiva: Proporcionar um ambiente de aprendizado prático que simule operações de SOC do mundo real.
+Desenvolvimento de Habilidades: Permitir que os usuários pratiquem detecção de ameaças, resposta a incidentes, threat hunting e outras disciplinas de segurança.
+Validação de Conhecimento: Oferecer um sistema de certificação e gamificação para validar e motivar o aprendizado.
+Realismo Operacional: Integrar dados simulados e reais para replicar a complexidade de um SOC ativo.
+Escopo Atual:
 
-### UI/UX Dependencies
-- **@radix-ui/***: Accessible, unstyled UI primitives for building custom components
-- **tailwindcss**: Utility-first CSS framework with custom cyber theme
-- **lucide-react**: Consistent icon library with security-focused icons
-- **class-variance-authority**: Type-safe component variant management
+A plataforma está desenvolvida como uma aplicação web de página única (SPA) com foco no frontend, utilizando React e TypeScript. A maior parte da funcionalidade é impulsionada por dados simulados e mockados, com integrações parciais a APIs públicas para adicionar uma camada de realismo. Não há um backend persistente customizado implementado no momento, o que posiciona o projeto como um protótipo ou ferramenta educacional avançada.
 
-### Development Tools
-- **vite**: Fast build tool with TypeScript support and development server
-- **tsx**: TypeScript execution environment for server development
-- **@replit/vite-plugin-***: Replit-specific development and debugging tools
+2. Arquitetura Geral
 
-## Deployment Strategy
+2.1. Frontend
 
-### Development Environment
-- **Vite development server** with hot module replacement for frontend
-- **Standalone client** with no server dependencies
-- **Simulated real-time data** for development and demonstration
+Tecnologias Core:
 
-### Production Build
-- **Vite build** generates optimized static assets for deployment
-- **Static hosting** compatible with any web server or CDN
-- **No server requirements** for deployment or operation
+React (com TypeScript): Biblioteca principal para construção da interface do usuário, garantindo componentes reutilizáveis e tipagem forte.
+Tailwind CSS: Framework CSS utility-first, utilizado para estilização rápida e responsiva, com um tema "cyber" customizado (index.css) que define variáveis CSS para cores e fontes, conferindo uma identidade visual única.
+Shadcn UI: Coleção de componentes React pré-estilizados com Tailwind CSS, utilizada para construir a interface de usuário de forma consistente e eficiente. Inclui componentes como: Accordion, Alert, AlertDialog, AspectRatio, Avatar, Badge, Breadcrumb, Button, Calendar, Card, Carousel, Checkbox, Collapsible, Command (para paletas de comando), ContextMenu, Dialog, Drawer, DropdownMenu, HoverCard, Input, InputOTP, Label, Menubar, NavigationMenu, Pagination, Popover, Progress, RadioGroup, Resizable, ScrollArea, Select, Separator, Sheet, Skeleton, Slider, Switch, Table, Tabs, Textarea, Toast e Toaster (para notificações), Toggle, ToggleGroup, e Tooltip.
+Recharts: Biblioteca para criação de gráficos e visualização de dados, encapsulada no componente Chart para integração com o tema visual da aplicação.
+Wouter: Biblioteca leve para roteamento no lado do cliente (App.tsx).
+Lucide React: Biblioteca de ícones (lucide-react) para uma iconografia consistente e expressiva em toda a aplicação.
+Estrutura de Componentes:
 
-### Demo Mode
-- **Simulated threat feeds** with realistic cybersecurity scenarios
-- **Interactive demonstrations** of SOC workflows and threat response
-- **Randomized data generation** for live dashboard feel
+A aplicação segue uma arquitetura modular baseada em componentes, organizada em diretórios lógicos (components, pages, hooks, lib). Cada funcionalidade principal (Dashboard, Incidentes, SOAR, etc.) é encapsulada em seu próprio componente React, promovendo a manutenibilidade e a escalabilidade.
 
-The application follows a standalone frontend architecture with simulated data streams and real-time updates, providing a comprehensive SOC demonstration without requiring backend infrastructure or external dependencies.
+Gerenciamento de Estado:
 
-## Recent Changes
+React Hooks (useState, useEffect, useCallback, useRef): Utilizados extensivamente para gerenciar o estado local dos componentes e o ciclo de vida.
+Context API: Empregado para gerenciamento de estado global em alguns casos (ex: useThreatData, useRealApiData), permitindo que dados sejam compartilhados entre componentes sem a necessidade de prop-drilling.
+React Query (@tanstack/react-query): Configurado (queryClient.ts) para gerenciamento de requisições assíncronas, caching, sincronização e tratamento de erros de forma eficiente. Embora a maioria dos dados seja mockada, a estrutura está pronta para um backend real.
+React Hook Form: Utilizado através do componente Form (form.tsx) para gerenciamento de formulários, provendo validação e controle de campos de forma robusta e integrada com o estado da aplicação.
+UI/UX:
 
-### January 2025 - Frontend Independence Update
-- **Removed backend dependencies**: Converted from full-stack to frontend-only architecture
-- **Implemented simulated data**: All threat detection, network monitoring, and AI analysis now use mock data
-- **Real-time simulation**: Created interval-based updates to simulate live SOC operations
-- **Standalone deployment**: Application now runs entirely in the browser without server requirements
+O design é moderno e "futurista", com uma paleta de cores escuras e vibrantes (definidas em index.css), utilizando transparências (glass-panel) e efeitos visuais (animações de pulso, gradientes) para criar uma experiência imersiva e engajadora. A responsividade é tratada via Tailwind e media queries (index.css, use-mobile.tsx).
 
-### January 2025 - SENTINEL Advanced Interface Integration
-- **SENTINEL surveillance system**: Integrated advanced 6-camera surveillance interface within existing surveillance component
-- **Visual effects**: Added glitch animations, scanning lines, and cyber-punk visual effects
-- **Real-time logs**: Implemented live system logs with random security event generation
-- **Interactive controls**: Grid layout switching, system reset, glitch triggers, and color mode toggles
-- **Camera feeds**: CAM_01-06 with live/offline status simulation and location mapping
-- **Compromised system theme**: Dark cyber aesthetic with red/blue color scheme and terminal-style interface
+Componente Sidebar (sidebar.tsx):
 
-### January 2025 - Ultra Advanced Version Final Release
-- **Premium UI/UX Components**: Integrated advanced terminal, user profile management, and notification center
-- **Enhanced TopBar**: Real-time system status indicators, advanced search with auto-complete, live threat counters
-- **Advanced Terminal**: Interactive SOC command interface with help system, threat hunting commands, and MITRE lookups
-- **User Profile System**: Complete analyst profile with experience levels, achievements, certifications, and preferences
-- **Notification Center**: Real-time security alerts with filtering, severity classification, and action management
-- **Interactive Global Threat Map**: Enhanced with zoom controls, multiple layers, threat detail popups, and live updates
-- **Complete Learning Center**: 6 full cybersecurity courses with 50+ modules, real content, exercises, and certification tracking
-- **Frontend Independence**: 100% standalone operation with simulated real-time data and no backend dependencies
-- **Educational Platform**: Comprehensive cybersecurity training environment for students and professionals
+A Sidebar é um componente fundamental para a navegação e layout da aplicação. Implementada com um SidebarProvider que gerencia o estado de expansão/colapso (state: "expanded" | "collapsed"), tanto para desktop quanto para mobile (usando Sheet para o modo offcanvas em dispositivos móveis). O useSidebar hook permite que outros componentes acessem e manipulem o estado da barra lateral.
 
+A Sidebar suporta diferentes variantes (sidebar, floating, inset) e modos colapsáveis (offcanvas, icon, none). Inclui sub-componentes para sua estrutura interna:
 
-Documentação do Sistema de Monitoramento e Análise de Segurança Cibernética
-Estrutura do Projeto
-O projeto é um sistema integrado que oferece funcionalidades de monitoramento e análise de segurança cibernética, incluindo detecção de ameaças, simulação de ataques, análise de IA e aprendizado. A estrutura é organizada em componentes reutilizáveis e páginas, cada um com sua funcionalidade específica.
+SidebarTrigger: Botão para alternar o estado da sidebar.
+SidebarRail: Área de arrasto para redimensionar/colapsar a sidebar.
+SidebarInset: Container principal para o conteúdo da aplicação quando a sidebar está no modo inset.
+SidebarInput: Campo de entrada estilizado para uso dentro da sidebar.
+SidebarHeader, SidebarFooter: Seções para cabeçalho e rodapé da sidebar.
+SidebarSeparator: Separador visual.
+SidebarContent: Área de conteúdo principal da sidebar.
+SidebarGroup, SidebarGroupLabel, SidebarGroupAction, SidebarGroupContent: Componentes para organizar grupos de itens na sidebar.
+SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuAction, SidebarMenuBadge, SidebarMenuSkeleton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton: Componentes para construir menus de navegação, incluindo sub-menus, botões com ícones e badges, e estados de carregamento (esqueletos).
+2.2. Backend/APIs (Conceitual e Integrações)
 
-Componentes Principais
-1. UI Components
-Button.tsx
+Atualmente, o projeto não possui um backend customizado. A persistência de dados e a lógica de negócios complexa são simuladas no frontend. No entanto, há um forte foco na integração com APIs externas, que servem como substitutos para dados de backend:
 
-Componente de botão personalizável com variantes de estilo.
-Card.tsx
+api-integration.ts: Este módulo centraliza a configuração e o consumo de APIs públicas de cibersegurança, incluindo:
+VirusTotal: Reputação de arquivos/URLs/IPs.
+AbuseIPDB: Banco de dados de reputação de IPs.
+IP Geolocation (ipgeolocation.io e ip-api.com): Dados de geolocalização e inteligência de ameaças.
+NVD NIST: Vulnerabilidades (CVEs).
+URLhaus: Banco de dados de URLs maliciosas.
+PhishTank: Banco de dados de URLs de phishing.
+Controle de Rate Limiting: Implementa um RateLimiter para gerenciar o consumo das APIs e evitar bloqueios.
+shodan-client.d.ts: A presença deste arquivo de declaração TypeScript sugere uma intenção futura ou uma integração em andamento com a API do Shodan para coleta de dados de hosts e serviços expostos na internet, o que enriqueceria ainda mais a inteligência de ameaças.
+Simulação de WebSockets: O módulo socket-client.ts simula uma conexão WebSocket e a emissão de eventos em tempo real (security_event, new_threat, ai_update), permitindo que componentes como activity-feed.tsx exibam dados dinâmicos sem uma conexão de backend real.
+3. Módulos e Funcionalidades Principais
 
-Componente de cartão para agrupar conteúdo com cabeçalho, descrição e footer.
-Input.tsx
+A plataforma é dividida em vários módulos, acessíveis via sidebar.tsx, cada um focado em uma área específica de um SOC:
 
-Componente de entrada de texto, estilizado para integração com o tema.
-Textarea.tsx
+3.1. Dashboard de Operações (soc-dashboard.tsx)
 
-Componente de área de texto com estilo adaptável.
-Badge.tsx
+metrics-panel.tsx: Exibe métricas chave como ameaças ativas, saúde da rede, ataques bloqueados e confiança da IA.
+ai-status-panel.tsx: Detalha o status e performance dos "kernels" de IA (TactiCore e Mission Ops), com visualizações de atividade neural.
+threat-map.tsx / enhanced-threat-map.tsx: Mapa global interativo que visualiza ameaças em tempo real (simuladas ou via API real), com indicadores de severidade e detalhes.
+activity-feed.tsx: Um feed em tempo real de eventos de segurança e alertas.
+mitre-framework.tsx: Apresenta a cobertura da plataforma em relação às táticas e técnicas do MITRE ATT&CK Framework.
+api-status-panel.tsx: Monitora o status das integrações com APIs externas, indicando se as chaves estão configuradas e se as APIs estão online/limitadas.
+3.2. Detecção e Análise de Ameaças (threat-list.tsx)
 
-Componente de distintivo, utilizado para exibir notificações ou status.
-Popover.tsx
+Lista de ameaças ativas com detalhes, severidade e ações de resposta.
 
-Componente de popover, utilizado para exibir informações adicionais ao passar o mouse ou clicar.
-Tooltip.tsx
+threat-severity.tsx e threat-counter.tsx: Componentes de resumo de ameaças.
+threat-detection-config.tsx: Permite configurar regras de detecção, thresholds de alerta e criar regras customizadas.
+ai-threat-analysis.tsx: Simula um motor de análise de ameaças baseado em IA, com fases de coleta de dados, análise comportamental, reconhecimento de padrões, modelagem preditiva e avaliação de risco, gerando logs detalhados e um relatório final.
+3.3. Gerenciamento de Incidentes (incident-management.tsx)
 
-Componente de tooltip, que fornece dicas contextuais sobre elementos da interface.
-2. Form Components
-Form.tsx
+Gerencia o ciclo de vida completo de incidentes de segurança (abertura, progresso, resolução, fechamento).
 
-Gerencia formulários com integração a react-hook-form, incluindo contexto para campos.
-Label.tsx
+Exibe detalhes do incidente, ativos afetados e uma linha do tempo de eventos.
+Permite a criação manual de novos incidentes.
+3.4. Gerenciamento de Vulnerabilidades (vulnerability-management.tsx)
 
-Componente de rótulo que se integra ao formulário, estilizado e acessível.
-3. Navigation Components
-Sidebar.tsx
+Lista e detalha vulnerabilidades (CVEs) com severidade, score CVSS, status e ativos afetados.
 
-Componente de barra lateral que permite a navegação entre diferentes seções do aplicativo.
-Tabs.tsx
+vulnerability-monitor.tsx: Componente que integra dados reais do NVD NIST para monitoramento de vulnerabilidades.
+Filtros por severidade e status, além de análises de ativos mais vulneráveis e tendências.
+3.5. Gerenciamento de Ativos (asset-management.tsx)
 
-Componente de abas, utilizado para organizar conteúdos em seções.
-DropdownMenu.tsx
+Inventário detalhado de ativos de TI (servidores, estações de trabalho, rede, bancos de dados).
 
-Componente de menu suspenso, que permite a seleção entre várias opções.
-NavigationMenu.tsx
+Informações como IP, OS, proprietário, localização, criticidade e status de segurança (vulnerabilidades, patch level, AV).
+Visualização de topologia de rede (placeholder) e status de conformidade.
+3.6. SOAR (Security Orchestration, Automation, and Response) (soar-automation.tsx)
 
-Componente de menu de navegação, que organiza links de forma hierárquica.
-Menubar.tsx
-
-Componente de barra de menu, que permite interações rápidas e navegação.
-4. Interaction Components
-Dialog.tsx
-
-Componente de diálogo modal para interações importantes com o usuário.
-AlertDialog.tsx
-
-Componente para exibir alertas e confirmações ao usuário.
-Collapsible.tsx
-
-Componente para seções que podem ser expandidas ou contraídas.
-Checkbox.tsx
-
-Componente de caixa de seleção, estilizado para uso em formulários.
-RadioGroup.tsx
-
-Componente de grupo de botões de opção, permitindo a seleção única entre opções.
-Switch.tsx
-
-Componente de botão deslizante para alternar configurações.
-Slider.tsx
-
-Componente de controle deslizante para selecionar valores dentro de um intervalo.
-5. Data Display Components
-Table.tsx
-
-Componente de tabela, utilizado para exibir dados em formato tabular.
-Pagination.tsx
-
-Componente de paginação, que facilita a navegação entre conjuntos de dados.
-ScrollArea.tsx
-
-Componente para áreas de rolagem, permitindo a navegação em conteúdos longos.
-Chart.tsx
-
-Componente para exibir gráficos e visualizações de dados.
-ActivityFeed.tsx
-
-Componente que exibe eventos de segurança em tempo real.
-MetricsPanel.tsx
-
-Componente que apresenta métricas de desempenho e segurança.
-6. Specialized Components
-AdvancedTerminal.tsx
-
-Componente de terminal avançado para interações de linha de comando.
-NotificationCenter.tsx
-
-Componente para gerenciar e exibir notificações ao usuário.
-UserProfile.tsx
-
-Componente que exibe informações do perfil do usuário e suas preferências.
-MLAnalysis.tsx
-
-Componente que apresenta resultados de análises de aprendizado de máquina.
-ThreatIntelligence.tsx
-
-Componente que exibe informações sobre IOCs, atores de ameaças e campanhas.
-ThreatMap.tsx
-
-Mapa interativo que mostra a localização e a gravidade das ameaças.
-Hooks
-useWebSocket.ts
-
-Hook para gerenciar a conexão WebSocket e eventos relacionados.
-useRealTimeData.ts
-
-Hook para gerenciar e atualizar dados em tempo real.
-useToast.ts
-
-Hook para gerenciar notificações e mensagens de feedback ao usuário.
+Gerenciamento de playbooks de automação para incident response, threat hunting, vulnerabilidade, etc.
+Simulação da execução de playbooks com logs de passos.
+Visão de integrações com outras ferramentas de segurança (SIEM, EDR, Firewall).
+3.7. Compliance e Relatórios (compliance-reporting.tsx)
+
+Monitoramento de conformidade com frameworks regulatórios (NIST CSF, ISO 27001, LGPD, SOX, PCI-DSS).
+Geração de relatórios de conformidade e dashboards executivos.
+Acompanhamento de tendências e agendamento de avaliações.
+3.8. Simulação de Ataques (attack-simulation.tsx)
+
+SimulatedAPTChain.tsx: Componente central para simulações interativas de cadeias de ataque APT (Cozy Bear, Flash Loan em DeFi, Ransomware, Cloud Credential Theft, Mobile Banking Trojan, IoT Botnet).
+Cada simulação detalha passos, comandos, resultados esperados, regras de detecção e pontos de aprendizado, com mapeamento MITRE ATT&CK.
+Modos de execução automática e manual, com logs de terminal em tempo real e pontuação.
+3.9. Inteligência de Ameaças (threat-intelligence.tsx)
+
+real-threat-intelligence.tsx: Integração com APIs externas para obter IOCs, dados de reputação de IPs, URLs de phishing e informações sobre campanhas de ameaças.
+Listagem de IOCs, atores de ameaças e campanhas ativas.
+3.10. Monitoramento de Vigilância (surveillance-system.tsx)
+
+sentinel-interface.tsx: Simula um sistema de vigilância com múltiplas câmeras, feeds de vídeo (mockados), detecção de alertas e logs do sistema. Inclui efeitos visuais como "glitch" para simular cenários de comprometimento.
+3.11. Scanner de Rede (network-scanner.tsx / enterprise-network-scanner.tsx)
+
+network-scanner.tsx: Versão básica para descoberta de dispositivos e serviços em uma rede.
+enterprise-network-scanner.tsx: Versão avançada com gerenciamento de segmentos de rede, avaliação de risco, status de conformidade, e simulação de varredura de vulnerabilidades com resultados detalhados.
+real-network-scanner.tsx: Utiliza APIs externas para analisar IPs e simular varreduras de rede com dados reais de geolocalização e reputação.
+3.12. Centro de Aprendizado (learning-center.tsx)
+
+Uma plataforma educacional completa com cursos (divididos em módulos e lições), conquistas e um sistema de certificação.
+
+enterprise-learning-platform.tsx: Foca em trilhas de carreira, programas de mentoria, laboratórios virtuais e parcerias corporativas.
+enterprise-certification-system.tsx: Detalha certificações de nível empresarial, seus requisitos, valor de mercado e impacto salarial.
+digital-certificate.tsx: Componente para exibir e validar certificados digitais, com simulação de verificação em blockchain.
+Guia HUD Inteligente (intelligent-hud-guide.tsx): Um sistema de guia interativo que oferece tutoriais passo a passo dentro da aplicação. Configurações de guias (GuideConfig) definem título, descrição, categoria, dificuldade, tempo estimado, e uma série de passos (GuideStep). Cada passo pode ter um alvo (target) para destacar elementos da UI, uma ação sugerida, uma dica, um ícone e até mesmo animações. O sistema gerencia o progresso, permite pular ou reiniciar guias, e pode ser configurado para exibir guias apenas uma vez, armazenando o estado no localStorage.
+3.13. Testes de Regras (interactive-rule-testing.tsx)
+
+Permite testar regras de detecção (regex) contra amostras de dados, simulando a eficácia e gerando logs detalhados com explicações sobre o processo de detecção e validação.
+
+3.14. Manual do Usuário (user-manual.tsx)
+
+Um guia interativo que descreve a metodologia de ensino da plataforma, trilhas de aprendizado, laboratórios práticos, e um roadmap de carreira em cibersegurança.
+
+3.15. Terminal Avançado (advanced-terminal.tsx)
+
+Um componente de terminal simulado que oferece uma interface de linha de comando para interagir com a plataforma. Permite a execução de comandos simulados como scan, threat-hunt, mitre, alert, status e clear. Possui funcionalidades de histórico de comandos, minimização/maximização e fechamento, proporcionando uma experiência imersiva de console de segurança.
+
+3.16. Perfil do Usuário e Configurações (user-profile.tsx)
+
+Um componente abrangente para visualização e gerenciamento do perfil do usuário. Exibe informações como nome, função, nível, experiência, status (online/offline), turno de trabalho, último login e estatísticas de desempenho (ameaças detectadas, sessões, certificações). Inclui um painel de preferências para configurar opções como notificações, alertas sonoros, auto-refresh e modo avançado, além de ações rápidas para configurações do sistema e segurança.
+
+3.17. Central de Notificações (notification-center.tsx)
+
+Um sistema de notificação em tempo real que exibe alertas e eventos importantes da plataforma. As notificações são categorizadas por tipo (crítico, aviso, informação, sucesso) e incluem título, mensagem, timestamp e fonte. Oferece funcionalidades para filtrar notificações (todas, não lidas, críticas), marcar como lidas (individualmente ou todas) e excluir. O componente simula a chegada de novas notificações periodicamente, mantendo a interface dinâmica.
+
+4. Integrações e Dados
+
+O projeto faz uso extensivo de dados para simular um ambiente dinâmico:
+
+Dados Simulados/Mockados: A maioria dos dados exibidos nos componentes é gerada ou mockada diretamente no frontend (ex: use-threat-data.tsx para ameaças em tempo real, dados mockados em ml-analysis.tsx, asset-management.tsx, etc.). Isso permite que a aplicação funcione de forma autônoma sem um backend complexo.
+Integrações Reais com APIs Públicas:
+use-real-api-data.tsx: Orquestra chamadas a APIs como NVD NIST (CVEs), PhishTank (URLs de phishing), AbuseIPDB e VirusTotal (reputação de IP/URL), e IP Geolocation. Essas integrações, embora sujeitas a limites de taxa e necessidade de chaves API, trazem um elemento de dados do mundo real para a simulação.
+Simulação de WebSockets: socket-client.ts e use-websocket.tsx simulam eventos em tempo real, como novos alertas de segurança ou atualizações de IA, para manter a interface dinâmica.
+5. Infraestrutura e Ambiente de Desenvolvimento
+
+Ambiente: A aplicação é configurada para desenvolvimento frontend com Vite (main.tsx, index.html), permitindo hot-module replacement e build otimizado.
+Gerenciamento de Dependências: package.json (não fornecido diretamente, mas inferido) gerencia as bibliotecas e ferramentas.
+Configuração de Ambiente: Variáveis de ambiente (import.meta.env.VITE_...) são usadas para gerenciar chaves de API, garantindo que não sejam expostas no código-fonte.
+6. Boas Práticas e Padrões de Código
+
+Modularidade: Código bem organizado em módulos e componentes reutilizáveis.
+Componentização: Forte adesão ao paradigma de componentes, com responsabilidades claras para cada um.
+Uso de Hooks: Exploração eficaz dos Hooks do React para lógica de estado e ciclo de vida, incluindo hooks personalizados como useSidebar e useIsMobile.
+Tipagem Forte: Uso consistente de TypeScript para melhorar a qualidade do código, detectar erros em tempo de desenvolvimento e facilitar a manutenção.
+Estilização: Abordagem moderna com Tailwind CSS, complementada por variáveis CSS customizadas para um tema coeso, e o uso de class-variance-authority para variantes de componentes.
+Padrões de UI: Utilização de uma biblioteca de componentes (Shadcn UI) e padrões como Radix UI para garantir consistência visual e funcional, acessibilidade e interações complexas.
+Separação de Preocupações: Lógica de negócio (simulada) e chamadas a APIs encapsuladas em hooks (use-threat-data, use-real-api-data, api-integration), separando-as da lógica de apresentação.
+Responsividade: Design adaptável a diferentes tamanhos de tela, com componentes que ajustam seu comportamento e layout.
+7. Pontos Fortes
+
+Experiência do Usuário (UX) Imersiva: Design visualmente atraente e interativo, com gamificação e simulações detalhadas. A inclusão de componentes como o IntelligentHudGuide aprimora a experiência de aprendizado.
+Modularidade e Escalabilidade: A estrutura de componentes facilita a adição de novas funcionalidades e a manutenção do código existente.
+Realismo Educacional: A combinação de dados simulados ricos e integrações com APIs reais proporciona um ambiente de aprendizado altamente relevante.
+Foco na Prática: As simulações de ataque (APT Chain), o AdvancedTerminal e os laboratórios interativos são um diferencial para o aprendizado prático.
+Tecnologias Modernas: Utilização de um stack tecnológico atualizado (React, TypeScript, Tailwind, React Query, Recharts, Radix UI) que é relevante no mercado.
+Documentação Interna: O componente user-manual.tsx já serve como uma base para a documentação do usuário final, o que é uma boa prática.
+Preparação para Backend: A arquitetura com React Query e a separação de lógica de dados em hooks facilitam a transição para um backend real no futuro.
+8. Oportunidades de Melhoria / Próximos Passos
+
+Implementação de Backend Real:
+Autenticação e Autorização: Implementar um sistema de login/registro e controle de acesso baseado em roles.
+Persistência de Dados: Migrar dados mockados para um banco de dados real (SQL ou NoSQL) para armazenar informações de usuários, progresso, incidentes, ativos, etc.
+Lógica de Negócios no Servidor: Mover a lógica complexa de simulação e processamento de eventos para o backend, aliviando a carga do cliente e garantindo a integridade dos dados.
+WebSockets Reais: Substituir a simulação de WebSockets por uma implementação real para comunicação em tempo real e push notifications.
+Cobertura de Testes:
+Testes Unitários: Implementar testes para componentes React e funções utilitárias.
+Testes de Integração: Validar a interação entre diferentes módulos e serviços.
+Testes E2E (End-to-End): Utilizar ferramentas como Cypress ou Playwright para simular fluxos de usuário completos.
+Otimização de Performance:
+Para grandes volumes de dados (simulados ou reais), otimizar a renderização de listas e mapas (virtualização de listas, otimização de SVG).
+Considerar o lazy loading de componentes e rotas para reduzir o tempo de carregamento inicial.
+Internacionalização (i18n):
+Implementar suporte a múltiplos idiomas para tornar a plataforma acessível a um público global.
+Segurança da Aplicação (Frontend e Backend):
+Se a plataforma for para produção, implementar medidas de segurança como validação de entrada, proteção contra XSS/CSRF, gerenciamento seguro de segredos (chaves API), etc.
+Documentação Adicional:
+Documentar APIs internas (se um backend for desenvolvido).
+Criar diagramas de arquitetura (C4 model, diagramas de fluxo de dados).
+Elaborar um roadmap de produto detalhado.
+9. Conclusão
+
+O projeto SOC "APT Defense Universe" demonstra uma base sólida e um grande potencial. A escolha de tecnologias modernas e a abordagem modular resultaram em uma aplicação frontend robusta e visualmente impressionante. O foco na simulação e na educação é um diferencial forte. Para evoluir de um protótipo educacional para uma plataforma completa, a próxima etapa crítica seria a implementação de um backend real e a transição dos dados mockados para um sistema persistente, além de um investimento contínuo em testes e otimizações. A base técnica existente é excelente para essa transição.
