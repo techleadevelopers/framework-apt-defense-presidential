@@ -124,6 +124,21 @@
     scrollbar-color: var(--cyber-cyan) var(--cyber-navy); /* Para Firefox */
   }
 
+  /* Força texto preto nos inputs */
+  .cyber-input {
+    color: black !important;
+    background-color: white !important;
+  }
+
+  .cyber-input::placeholder {
+    color: #6b7280 !important;
+  }
+
+  .cyber-input:focus {
+    color: black !important;
+    background-color: white !important;
+  }
+
   /* Correção para cor do texto nos campos de entrada */
   .cyber-input {
     color: white !important;

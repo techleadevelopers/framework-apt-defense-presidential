@@ -138,6 +138,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Learning Center routes
+  app.get('/api/courses', async (req, res) => {
+    try {
+      const courses = await storage.getCourses();
+      res.json(courses);
+    } catch (error) {
+      console.error('Courses error:', error);
+      res.status(500).json({ error: 'Erro ao buscar cursos' });
+    }
+  });
+
+  app.get('/api/courses/:courseId/progress/:userId', async (req, res) => {
+    try {
+      const courseId = parseInt(req.params.courseId);
+      const userId = parseInt(req.params.userId);
+      
+      // Get or create course progress for user
+      let progress = await storage.getStudentCourseProgress(userId, courseId);
+      
+      if (!progress) {
+        // Initialize progress at 0% for new users
+        const newProgress = await storage.updateStudentProgress({
+          userId,
+          courseId,
+          moduleId: null,
+          progress: 0,
+          isCompleted: false,
+          timeSpent: 0
+        });
+        progress = newProgress;
+      }
+      
+      res.json(progress);
+    } catch (error) {
+      console.error('Course progress error:', error);
+      res.status(500).json({ error: 'Erro ao buscar progresso do curso' });
+    }
+  });
+
+  app.post('/api/courses/:courseId/progress/:userId', async (req, res) => {
+    try {
+      const courseId = parseInt(req.params.courseId);
+      const userId = parseInt(req.params.userId);
+      const { progress, moduleId, timeSpent, isCompleted } = req.body;
+      
+      const updatedProgress = await storage.updateStudentProgress({
+        userId,
+        courseId,
+        moduleId: moduleId || null,
+        progress: Math.min(100, Math.max(0, progress)), // Ensure 0-100 range
+        isCompleted: isCompleted || false,
+        timeSpent: timeSpent || 0
+      });
+      
+      res.json(updatedProgress);
+    } catch (error) {
+      console.error('Update progress error:', error);
+      res.status(500).json({ error: 'Erro ao atualizar progresso do curso' });
+    }
+  });
+
   app.get('/api/threats', async (req, res) => {
     try {
       const severity = req.query.severity as string;
@@ -291,6 +352,87 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   }, 10000); // Every 10 seconds
+
+  // Plans API Routes
+  app.get('/api/plans', async (req, res) => {
+    const plans = {
+      free: {
+        id: "free",
+        name: "Free",
+        price: 0,
+        currency: "BRL",
+        period: "mensal",
+        description: "Perfeito para estudantes e primeiros passos",
+        features: [
+          "Acesso ao SOC Dashboard",
+          "3 ativos monitorados",
+          "IA simulada (TactiCore)",
+          "Gamificação limitada",
+          "Cursos introdutórios",
+          "Comunidade Discord"
+        ],
+        limitations: [
+          "Sem retreinamento de IA",
+          "Sem simulações de ataques",
+          "Sem certificações",
+          "Sem integração APIs reais"
+        ],
+        maxAssets: 3
+      },
+      pro: {
+        id: "pro",
+        name: "Pro", 
+        price: 79.90,
+        currency: "BRL",
+        period: "mensal",
+        description: "Ideal para pequenas equipes e freelancers",
+        features: [
+          "Todos os recursos do Free",
+          "10 ativos monitorados",
+          "IA real (TactiCore)",
+          "Gamificação com XP e níveis",
+          "2 simulações de ataques",
+          "Cursos intermediários"
+        ],
+        maxAssets: 10
+      },
+      plus: {
+        id: "plus",
+        name: "Plus",
+        price: 229.90,
+        currency: "BRL", 
+        period: "mensal",
+        description: "Para startups com time de SOC",
+        popular: true,
+        features: [
+          "Todos os recursos do Pro",
+          "50 ativos monitorados",
+          "IA avançada completa",
+          "Simulações completas de APT",
+          "Certificações profissionais"
+        ],
+        maxAssets: 50
+      },
+      enterprise: {
+        id: "enterprise",
+        name: "Enterprise",
+        price: 2499,
+        currency: "BRL",
+        period: "mensal",
+        description: "Para governo, bancos e infraestrutura crítica",
+        features: [
+          "Todos os recursos do Plus",
+          "Ativos ilimitados",
+          "IA com retreinamento automático",
+          "Suporte 24/7",
+          "Customização completa"
+        ],
+        maxAssets: -1
+      }
+    };
+
+    res.json(plans);
+  });
 
   return httpServer;
 }

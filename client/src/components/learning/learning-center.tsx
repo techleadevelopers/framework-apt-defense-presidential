@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 import EnterpriseLearningPlatform from "./enterprise-learning-platform";
 import EnterpriseCertificationSystem from "./enterprise-certification-system";
 import { CertificationManager } from "./digital-certificate";
@@ -2048,23 +2049,44 @@ export default function LearningCenter() {
   const [selectedCourse, setSelectedCourse] = useState<DetailedCourse | null>(null);
   const [selectedModule, setSelectedModule] = useState<CourseModule | null>(null);
   
+  // Reset all course progress to 0% - everyone starts fresh
+  const [courseProgress, setCourseProgress] = useState<{ [key: string]: number }>({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Initialize all courses with 0% progress for all users (including admin)
+    const initialProgress: { [key: string]: number } = {};
+    detailedCourses.forEach(course => {
+      initialProgress[course.id] = 0; // Everyone starts at 0%
+    });
+    setCourseProgress(initialProgress);
+    setIsLoading(false);
+  }, []);
+
+  const updateCourseProgress = (courseId: string, newProgress: number) => {
+    setCourseProgress(prev => ({
+      ...prev,
+      [courseId]: Math.min(100, Math.max(0, newProgress))
+    }));
+  };
+
   // Advanced user progress tracking
   const [userProgress, setUserProgress] = useState({
-    totalPoints: 2847,
-    level: 12,
-    completedCourses: 3,
-    certificates: 2,
-    streak: 7,
-    rank: "Advanced Analyst",
-    nextLevelPoints: 3200,
-    globalRank: 1247,
-    weeklyPoints: 420,
-    monthlyGoal: 1500,
-    achievements: 15,
-    studyTime: 127, // hours
-    practicalExercises: 34,
-    simulationsCompleted: 12,
-    mentorshipHours: 8
+    totalPoints: 0, // Reset to 0
+    level: 1, // Start at level 1
+    completedCourses: 0,
+    certificates: 0,
+    streak: 0,
+    rank: "Iniciante",
+    nextLevelPoints: 1000,
+    globalRank: 0,
+    weeklyPoints: 0,
+    monthlyGoal: 500,
+    achievements: 0,
+    studyTime: 0, // hours
+    practicalExercises: 0,
+    simulationsCompleted: 0,
+    mentorshipHours: 0
   });
 
   const categories = ["all", "Fundamentals", "Threat Hunting", "Frameworks", "Incident Response", "Penetration Testing", "Cloud Security", "Blockchain Security", "Future Threats", "SOC Management", "Compliance & Risk", "AI Security", "Zero Trust", "Threat Intelligence"];
@@ -2436,15 +2458,31 @@ export default function LearningCenter() {
                         </div>
                       </div>
                       
-                      {course.progress && (
-                        <div className="mb-4">
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-400">Progress</span>
-                            <span className="text-[var(--cyber-cyan)]">{course.progress}%</span>
-                          </div>
-                          <Progress value={course.progress} className="w-full" />
+                      <div className="mb-4">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-gray-400">Progress</span>
+                          <span className="text-[var(--cyber-cyan)]">{courseProgress[course.id] || 0}%</span>
                         </div>
-                      )}
+                        <Progress value={courseProgress[course.id] || 0} className="w-full" />
+                        <div className="flex justify-between items-center mt-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateCourseProgress(course.id, Math.min(100, (courseProgress[course.id] || 0) + 10))}
+                            className="text-xs"
+                          >
+                            +10%
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateCourseProgress(course.id, 0)}
+                            className="text-xs"
+                          >
+                            Reset
+                          </Button>
+                        </div>
+                      </div>
                       
                       <Button 
                         className={`w-full ${course.locked ? 'opacity-50 cursor-not-allowed' : 'bg-[var(--cyber-cyan)] text-[var(--cyber-dark)] hover:bg-cyan-400'}`}
@@ -2456,7 +2494,7 @@ export default function LearningCenter() {
                             <Lock className="w-4 h-4 mr-2" />
                             Locked
                           </>
-                        ) : course.progress ? (
+                        ) : (courseProgress[course.id] && courseProgress[course.id] > 0) ? (
                           <>
                             <Play className="w-4 h-4 mr-2" />
                             Continue

@@ -65,6 +65,7 @@ export interface IStorage {
   getStudentCourseProgress(userId: number, courseId: number): Promise<StudentProgress | undefined>;
   updateStudentProgress(progress: InsertStudentProgress): Promise<StudentProgress>;
   completeModule(userId: number, moduleId: number): Promise<StudentProgress>;
+  createStudentProgress(progress: InsertStudentProgress): Promise<StudentProgress>;
 
   // Certifications
   getCertifications(): Promise<Certification[]>;

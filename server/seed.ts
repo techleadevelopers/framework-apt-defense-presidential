@@ -16,8 +16,8 @@ export async function seedDatabase() {
         category: "fundamental",
         level: "iniciante",
         duration: "8 semanas",
-        modules: 10,
-        rating: 4.8,
+        totalModules: 10,
+        rating: 480,
         enrolledCount: 2450,
         price: 0,
         instructor: "Prof. Dr. Carlos Silva",
@@ -31,8 +31,8 @@ export async function seedDatabase() {
         category: "advanced",
         level: "avançado",
         duration: "12 semanas",
-        modules: 8,
-        rating: 4.9,
+        totalModules: 8,
+        rating: 490,
         enrolledCount: 890,
         price: 0,
         instructor: "Dra. Ana Rodrigues",
@@ -46,8 +46,8 @@ export async function seedDatabase() {
         category: "specialist",
         level: "expert",
         duration: "16 semanas",
-        modules: 12,
-        rating: 4.7,
+        totalModules: 12,
+        rating: 470,
         enrolledCount: 560,
         price: 0,
         instructor: "Especialista João Santos",
@@ -61,8 +61,8 @@ export async function seedDatabase() {
         category: "operational",
         level: "intermediário",
         duration: "10 semanas",
-        modules: 9,
-        rating: 4.6,
+        totalModules: 9,
+        rating: 460,
         enrolledCount: 1240,
         price: 0,
         instructor: "Especialista Maria Oliveira",
@@ -76,8 +76,8 @@ export async function seedDatabase() {
         category: "cloud",
         level: "intermediário",
         duration: "14 semanas",
-        modules: 11,
-        rating: 4.5,
+        totalModules: 11,
+        rating: 450,
         enrolledCount: 890,
         price: 0,
         instructor: "Arq. Pedro Costa",
@@ -91,8 +91,8 @@ export async function seedDatabase() {
         category: "forensics",
         level: "avançado",
         duration: "18 semanas",
-        modules: 14,
-        rating: 4.8,
+        totalModules: 14,
+        rating: 480,
         enrolledCount: 445,
         price: 0,
         instructor: "Perito Lucas Ferreira",
@@ -183,43 +183,48 @@ export async function seedDatabase() {
     // Seed Certificações
     const certificationData = [
       {
-        title: "Certified Blue Team Analyst",
+        name: "Certified Blue Team Analyst",
         description: "Certificação em análise de segurança defensiva",
         issuer: "Blue Team Ops Academy",
-        validityPeriod: "2 anos",
-        requirements: "Completar 3 cursos fundamentais",
+        level: "iniciante",
+        duration: "2 anos",
+        requiredCourses: [1, 4],
         isActive: true
       },
       {
-        title: "Advanced Malware Analyst",
+        name: "Advanced Malware Analyst",
         description: "Especialista em análise de malware",
         issuer: "Blue Team Ops Academy", 
-        validityPeriod: "3 anos",
-        requirements: "Curso de Análise de Malware + Projeto Final",
+        level: "avançado",
+        duration: "3 anos",
+        requiredCourses: [2],
         isActive: true
       },
       {
-        title: "SOC Operations Specialist",
+        name: "SOC Operations Specialist",
         description: "Especialista em operações de SOC",
         issuer: "Blue Team Ops Academy",
-        validityPeriod: "2 anos", 
-        requirements: "SOC Operations + Incident Response",
+        level: "intermediário",
+        duration: "2 anos",
+        requiredCourses: [4],
         isActive: true
       },
       {
-        title: "Cloud Security Architect",
+        name: "Cloud Security Architect",
         description: "Arquiteto de segurança em nuvem",
         issuer: "Blue Team Ops Academy",
-        validityPeriod: "3 anos",
-        requirements: "Cloud Security + Projeto Prático",
+        level: "avançado",
+        duration: "3 anos",
+        requiredCourses: [5],
         isActive: true
       },
       {
-        title: "Digital Forensics Expert",
+        name: "Digital Forensics Expert",
         description: "Especialista em forense digital",
         issuer: "Blue Team Ops Academy",
-        validityPeriod: "3 anos",
-        requirements: "Forense Digital + Certificação Prática",
+        level: "expert",
+        duration: "3 anos",
+        requiredCourses: [6],
         isActive: true
       }
     ];
@@ -307,31 +312,37 @@ export async function seedDatabase() {
     // Seed Dados SOC (Threats, Devices, etc.)
     const threatData = [
       {
-        name: "APT Grupo Lazarus",
-        type: "APT",
-        severity: "critical",
-        status: "active",
+        title: "APT Grupo Lazarus",
         description: "Grupo APT norte-coreano focado em ataques financeiros",
-        indicators: ["lazarus.apt.com", "192.168.1.100"],
-        mitreId: "G0032"
+        severity: "critical",
+        mitreId: "G0032",
+        sourceIp: "192.168.1.100",
+        targetHost: "finance.company.com",
+        confidence: 95,
+        status: "active",
+        metadata: { indicators: ["lazarus.apt.com", "192.168.1.100"] }
       },
       {
-        name: "Ransomware WannaCry",
-        type: "ransomware", 
-        severity: "high",
-        status: "contained",
+        title: "Ransomware WannaCry",
         description: "Ransomware que explora vulnerabilidade SMB",
-        indicators: ["wannacry.exe", "135.124.45.6"],
-        mitreId: "S0366"
+        severity: "high",
+        mitreId: "S0366",
+        sourceIp: "135.124.45.6",
+        targetHost: "workstation-001",
+        confidence: 90,
+        status: "blocked",
+        metadata: { indicators: ["wannacry.exe", "135.124.45.6"] }
       },
       {
-        name: "Phishing Campaign",
-        type: "phishing",
-        severity: "medium",
-        status: "investigating", 
+        title: "Phishing Campaign",
         description: "Campanha de phishing direcionada",
-        indicators: ["phish@evil.com", "malicious-link.com"],
-        mitreId: "T1566"
+        severity: "medium",
+        mitreId: "T1566",
+        sourceIp: "203.124.56.89",
+        targetHost: "mail.company.com",
+        confidence: 75,
+        status: "monitoring",
+        metadata: { indicators: ["phish@evil.com", "malicious-link.com"] }
       }
     ];
 
@@ -344,7 +355,7 @@ export async function seedDatabase() {
         name: "TactiCore",
         type: "threat_detection",
         version: "v2.1.4",
-        accuracy: 94.7,
+        accuracy: 94,
         status: "active",
         description: "Motor de IA para detecção avançada de ameaças",
         lastTrained: new Date()
@@ -353,7 +364,7 @@ export async function seedDatabase() {
         name: "Mission Ops", 
         type: "behavioral_analysis",
         version: "v1.8.2",
-        accuracy: 87.3,
+        accuracy: 87,
         status: "active",
         description: "Sistema de análise comportamental para SOC",
         lastTrained: new Date()

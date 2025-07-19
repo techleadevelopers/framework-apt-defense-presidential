@@ -6,6 +6,12 @@ export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  plan: text("plan").notNull().default("free"), // "free", "pro", "plus", "enterprise"
+  planStartDate: timestamp("plan_start_date").defaultNow(),
+  planEndDate: timestamp("plan_end_date"),
+  trialUsed: boolean("trial_used").default(false),
+  maxAssets: integer("max_assets").default(3),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const threats = pgTable("threats", {
@@ -148,6 +154,9 @@ export const studentAchievements = pgTable("student_achievements", {
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
+  plan: true,
+}).extend({
+  plan: z.enum(["free", "pro", "plus", "enterprise"]).default("free"),
 });
 
 export const insertThreatSchema = createInsertSchema(threats).omit({

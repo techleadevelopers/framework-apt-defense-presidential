@@ -166,8 +166,8 @@ export default function LoginPage() {
                   type="text"
                   value={formData.username}
                   onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
-                  className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500"
-                  style={{ color: 'white' }}
+                  className="cyber-input bg-white border-gray-600 placeholder-gray-500"
+                  style={{ color: 'black !important', backgroundColor: 'white !important' }}
                   placeholder="Digite seu usuário"
                   required
                 />
@@ -184,8 +184,8 @@ export default function LoginPage() {
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                    className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500 pr-10"
-                    style={{ color: 'white' }}
+                    className="cyber-input bg-white border-gray-600 placeholder-gray-500 pr-10"
+                    style={{ color: 'black !important', backgroundColor: 'white !important' }}
                     placeholder="Digite sua senha"
                     required
                   />
@@ -232,7 +232,7 @@ export default function LoginPage() {
               </Button>
             </form>
 
-            {/* Demo Access Button */}
+            {/* Plans Link */}
             <div className="relative mt-6">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-gray-600" />
@@ -242,19 +242,19 @@ export default function LoginPage() {
               </div>
             </div>
             
-            <Link href="/demo" className="block mt-4">
+            <Link href="/plans" className="block mt-4">
               <Button 
                 type="button"
                 variant="outline"
                 className="w-full border-cyan-500/50 text-cyan-400 hover:bg-cyan-950 hover:border-cyan-400 font-medium py-3 rounded-lg transition-all duration-300"
               >
-                🎯 Entrar no Modo Demo (1 min)
+                📋 Ver Planos e Recursos
               </Button>
             </Link>
             
             <div className="text-center text-xs text-gray-400 mt-3">
-              <p>Modo Demo: Acesso completo ao frontend sem autenticação</p>
-              <p>Modo Autenticado: Progresso salvo no banco de dados</p>
+              <p>Plano Free: 3 ativos monitorados • IA simulada • Cursos básicos</p>
+              <p>Planos Pro/Plus/Enterprise: Recursos avançados de SOC real</p>
             </div>
 
             {/* Registration Link */}

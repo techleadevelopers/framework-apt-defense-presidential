@@ -79,8 +79,8 @@ export default function UserResume() {
 
   const { user, gamification } = userData;
   const experienceNeededForNextLevel = gamification.level * 1000;
-  const currentLevelProgress = (gamification.totalPoints % 1000) / 10;
-  const completionPercentage = Math.round((gamification.coursesCompleted / gamification.totalCourses) * 100);
+  const currentLevelProgress = gamification.totalPoints > 0 ? (gamification.totalPoints % 1000) / 10 : 0;
+  const completionPercentage = gamification.totalCourses > 0 ? Math.round((gamification.coursesCompleted / gamification.totalCourses) * 100) : 0;
 
   const getLevelIcon = (level: number) => {
     if (level >= 10) return <Crown className="w-4 h-4 text-yellow-400" />;
@@ -116,40 +116,20 @@ export default function UserResume() {
               >
                 Level {gamification.level}
               </Badge>
-              <span className="text-xs text-gray-400">{gamification.totalPoints} pts</span>
+              <span className="text-xs text-gray-400 capitalize">{user.plan} Plan</span>
             </div>
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="space-y-1">
-          <div className="flex justify-between text-xs text-gray-400">
-            <span>Experience</span>
-            <span>{Math.round(currentLevelProgress)}%</span>
+        {/* Quick Actions */}
+        <div className="flex items-center justify-between pt-2 border-t border-gray-700/50">
+          <div className="flex items-center space-x-2 text-xs text-gray-400">
+            <Shield className="w-3 h-3 text-[var(--cyber-cyan)]" />
+            <span>SOC Operador</span>
           </div>
-          <Progress 
-            value={currentLevelProgress} 
-            className="h-2 bg-[var(--cyber-steel)]/30"
-          />
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          <div className="flex items-center space-x-2">
-            <Trophy className="w-3 h-3 text-yellow-400" />
-            <span className="text-gray-400">{gamification.achievements}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Award className="w-3 h-3 text-blue-400" />
-            <span className="text-gray-400">{gamification.certifications}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <BookOpen className="w-3 h-3 text-green-400" />
-            <span className="text-gray-400">{gamification.coursesCompleted}/{gamification.totalCourses}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Target className="w-3 h-3 text-purple-400" />
-            <span className="text-gray-400">{completionPercentage}%</span>
+          <div className="flex items-center space-x-1 text-xs text-gray-400">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span>Online</span>
           </div>
         </div>
       </div>

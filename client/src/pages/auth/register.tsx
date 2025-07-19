@@ -196,7 +196,8 @@ export default function RegisterPage() {
                     type="text"
                     value={formData.firstName}
                     onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-                    className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500"
+                    className="cyber-input bg-white border-gray-600 placeholder-gray-500"
+                    style={{ color: 'black !important', backgroundColor: 'white !important' }}
                     placeholder="Primeiro nome"
                     required
                   />
@@ -210,7 +211,8 @@ export default function RegisterPage() {
                     type="text"
                     value={formData.lastName}
                     onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
-                    className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500"
+                    className="cyber-input bg-white border-gray-600 placeholder-gray-500"
+                    style={{ color: 'black !important', backgroundColor: 'white !important' }}
                     placeholder="Último nome"
                     required
                   />
@@ -228,7 +230,8 @@ export default function RegisterPage() {
                     type="text"
                     value={formData.username}
                     onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
-                    className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500"
+                    className="cyber-input bg-white border-gray-600 text-black placeholder-gray-500"
+                    style={{ color: 'black' }}
                     placeholder="Nome de usuário único"
                     required
                   />
@@ -242,7 +245,8 @@ export default function RegisterPage() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500"
+                    className="cyber-input bg-white border-gray-600 text-black placeholder-gray-500"
+                    style={{ color: 'black' }}
                     placeholder="email@exemplo.com"
                     required
                   />
@@ -259,7 +263,8 @@ export default function RegisterPage() {
                   type="text"
                   value={formData.institution}
                   onChange={(e) => setFormData(prev => ({ ...prev, institution: e.target.value }))}
-                  className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500"
+                  className="cyber-input bg-white border-gray-600 text-black placeholder-gray-500"
+                  style={{ color: 'black' }}
                   placeholder="Universidade, empresa ou organização"
                 />
               </div>
@@ -276,7 +281,8 @@ export default function RegisterPage() {
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                      className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500 pr-10"
+                      className="cyber-input bg-white border-gray-600 text-black placeholder-gray-500 pr-10"
+                      style={{ color: 'black' }}
                       placeholder="Senha segura"
                       required
                     />
@@ -299,7 +305,8 @@ export default function RegisterPage() {
                       type={showConfirmPassword ? "text" : "password"}
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                      className="cyber-input bg-[var(--cyber-dark)]/50 border-gray-600 text-white placeholder-gray-500 pr-10"
+                      className="cyber-input bg-white border-gray-600 text-black placeholder-gray-500 pr-10"
+                      style={{ color: 'black' }}
                       placeholder="Confirme a senha"
                       required
                     />

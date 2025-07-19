@@ -8,6 +8,7 @@ import RegisterPage from "@/pages/auth/register";
 import StudentDashboard from "@/pages/student-dashboard";
 import AdminDashboard from "@/pages/admin-dashboard";
 import DemoPage from "@/pages/demo";
+import PlansPage from "@/pages/plans";
 
 function Router() {
   return (
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/" component={LoginPage} />
       <Route path="/auth/login" component={LoginPage} />
       <Route path="/auth/register" component={RegisterPage} />
+      <Route path="/plans" component={PlansPage} />
       <Route path="/demo" component={DemoPage} />
       <Route path="/student-dashboard" component={StudentDashboard} />
       <Route path="/admin" component={AdminDashboard} />
