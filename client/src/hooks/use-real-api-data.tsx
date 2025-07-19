@@ -44,19 +44,32 @@ export function useRealApiData(): RealApiData {
       ];
       
       const threatPromises = sampleIps.map(async (ip) => {
-        const geoData = await ApiIntegration.getIpGeolocation(ip);
-        const repData = await ApiIntegration.checkIpReputation(ip);
-        
-        return {
-          ip,
-          geolocation: geoData,
-          reputation: repData,
-          timestamp: new Date()
-        };
+        try {
+          const geoData = await ApiIntegration.getIpGeolocation(ip);
+          const repData = await ApiIntegration.checkIpReputation(ip);
+          
+          return {
+            ip,
+            geolocation: geoData,
+            reputation: repData,
+            timestamp: new Date()
+          };
+        } catch (error) {
+          console.warn(`Failed to fetch data for IP ${ip}:`, error);
+          return {
+            ip,
+            geolocation: null,
+            reputation: null,
+            timestamp: new Date()
+          };
+        }
       });
       
-      const threatResults = await Promise.all(threatPromises);
-      setThreats(threatResults.filter(t => t.geolocation || t.reputation));
+      const threatResults = await Promise.allSettled(threatPromises);
+      const successfulResults = threatResults
+        .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
+        .map(result => result.value);
+      setThreats(successfulResults.filter(t => t.geolocation || t.reputation));
       
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch API data');

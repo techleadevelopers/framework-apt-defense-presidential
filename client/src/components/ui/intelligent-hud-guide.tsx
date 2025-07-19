@@ -530,7 +530,7 @@ export default function IntelligentHudGuide({
 
           {/* Target highlighting */}
           {currentStepData?.target && (
-            <style jsx>{`
+            <style>{`
               ${currentStepData.target} {
                 position: relative;
                 z-index: 60;

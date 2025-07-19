@@ -1,5 +1,6 @@
 import { Shield, Gauge, AlertTriangle, Network, Play, Brain, Bot, Eye, GraduationCap, Globe, BookOpen, Terminal, FileText, Bug, Server, Workflow, ClipboardCheck } from "lucide-react";
 import { TabType } from "@/pages/soc-dashboard";
+import UserResume from "./user-resume";
 
 interface SidebarProps {
   activeTab: TabType;
@@ -40,9 +41,26 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
         </div>
       </div>
 
+      {/* User Resume Section */}
+      <UserResume />
+
       {/* Navigation Menu */}
       <nav className="flex-1 p-4 space-y-2">
-        {navigationItems.map((item) => {
+        {/* Dashboard button primeiro */}
+        <button
+          onClick={() => onTabChange("dashboard")}
+          className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
+            activeTab === "dashboard"
+              ? "bg-[var(--cyber-cyan)]/20 text-[var(--cyber-cyan)] border border-[var(--cyber-cyan)]/30"
+              : "hover:bg-[var(--cyber-steel)]/50 text-white"
+          }`}
+        >
+          <Gauge className="w-5 h-5" />
+          <span className="text-sm">Dashboard</span>
+        </button>
+
+        {/* Resto dos itens */}
+        {navigationItems.filter(item => item.id !== "dashboard").map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
           

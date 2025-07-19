@@ -27,6 +27,7 @@ import AssetManagement from "@/components/assets/asset-management";
 import SOARAutomation from "@/components/automation/soar-automation";
 import ComplianceReporting from "@/components/compliance/compliance-reporting";
 import IntelligentHudGuide from "@/components/ui/intelligent-hud-guide";
+
 import { useRealApiData } from "@/hooks/use-real-api-data";
 
 export type TabType = 
@@ -73,24 +74,24 @@ export default function SOCDashboard() {
       case "dashboard":
         return (
           <div className="space-y-6">
-            <div className="ai-status-panel">
-              <AiStatusPanel />
-            </div>
-            <div className="metrics-panel">
-              <MetricsPanel />
-            </div>
-            <div className="threat-map">
-              <ThreatMap />
-            </div>
+            {/* Primeira fileira - TactiCore Kernel, Mission Ops Kernel, Neural Activity */}
+            <AiStatusPanel />
+            
+            {/* Segunda fileira - Active Threats, Network Health, Blocked Attacks, AI Confidence */}
+            <MetricsPanel />
+            
+            {/* Terceira fileira - Global Threat Map */}
+            <ThreatMap />
+            
+            {/* Quarta fileira - Live Activity Feed e API Status Panel */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="activity-feed">
-                <ActivityFeed />
-              </div>
+              <ActivityFeed />
               <ApiStatusPanel onRefreshApis={refreshData} isRefreshing={isLoading} />
             </div>
-            <div className="mitre-framework">
-              <MitreFramework />
-            </div>
+            
+            {/* MITRE Framework */}
+            <MitreFramework />
+            
             <IntelligentHudGuide 
               guideId="soc-dashboard" 
               autoStart={true}

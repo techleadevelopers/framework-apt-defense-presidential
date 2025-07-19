@@ -106,7 +106,7 @@ export async function makeApiRequest<T>(
   const config = API_CONFIGS[apiName];
   
   // Check if API key is required but missing
-  if (config.requiresKey && !Object.values(config.headers || {}).some(v => v)) {
+  if (config.requiresKey && !Object.values(config.headers || {}).some(v => v && v.trim() !== '')) {
     console.warn(`API key required for ${apiName} but not provided`);
     return null;
   }
@@ -134,6 +134,7 @@ export async function makeApiRequest<T>(
     return await response.json();
   } catch (error) {
     console.error(`Error making request to ${apiName}:`, error);
+    // Return null instead of throwing to prevent unhandled promise rejections
     return null;
   }
 }

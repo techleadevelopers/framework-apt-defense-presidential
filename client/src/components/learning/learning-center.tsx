@@ -87,79 +87,80 @@ interface DetailedCourse extends Course {
 const detailedCourses: DetailedCourse[] = [
   {
     id: '1',
-    title: 'Introduction to Cybersecurity',
-    description: 'Fundamentals of cybersecurity including threat landscape, basic defense mechanisms, and security best practices.',
+    title: 'Fundamentos de Segurança Cibernética',
+    description: 'Curso abrangente cobrindo os fundamentos essenciais da cybersegurança, incluindo conceitos básicos, ameaças, defesas e melhores práticas.',
     level: 'beginner',
-    duration: '6 hours',
-    totalModules: 8,
+    duration: '8 semanas',
+    totalModules: 12,
     enrolled: 1247,
     rating: 4.8,
     progress: 75,
     category: 'Fundamentals',
-    instructor: 'Dr. Sarah Chen, CISSP',
+    instructor: 'Dr. Ana Silva, CISSP, CISM',
     certification: 'Cybersecurity Foundation Certificate',
-    prerequisites: ['Basic computer literacy', 'Understanding of network basics'],
+    prerequisites: ['Conhecimento básico em informática', 'Conceitos de rede'],
     learningObjectives: [
-      'Understand the cybersecurity threat landscape',
-      'Learn fundamental security principles',
-      'Implement basic security controls',
-      'Recognize common attack vectors'
+      'Compreender o panorama de ameaças cibernéticas',
+      'Aplicar princípios fundamentais de segurança',
+      'Implementar controles básicos de segurança',
+      'Reconhecer vetores de ataque comuns',
+      'Desenvolver mentalidade de segurança'
     ],
     modules: [
       {
         id: '1-1',
-        title: 'Introduction to Cybersecurity',
-        duration: '45 min',
-        description: 'Overview of cybersecurity fundamentals and importance',
+        title: 'Introdução à Segurança Cibernética',
+        duration: '2 horas',
+        description: 'Fundamentos e conceitos essenciais da cybersegurança',
+        completed: true,
         content: [
-          'What is Cybersecurity?',
-          'The CIA Triad: Confidentiality, Integrity, Availability',
-          'Risk Management Principles',
-          'Threat Actors and Motivations',
-          'Current Cybersecurity Statistics and Trends'
+          'O que é Cybersegurança?',
+          'Tríade CIA: Confidencialidade, Integridade, Disponibilidade',
+          'Princípios de Gestão de Risco',
+          'Tipos de Atores de Ameaça',
+          'Estatísticas e Tendências Atuais'
         ],
         exercises: [
-          'Identify CIA triad violations in real-world scenarios',
-          'Calculate risk using probability and impact matrices',
-          'Classify threat actors by motivation and capability'
+          'Identificar violações da tríade CIA em cenários reais',
+          'Calcular risco usando matrizes de probabilidade e impacto',
+          'Classificar atores de ameaça por motivação e capacidade'
         ]
       },
       {
         id: '1-2',
-        title: 'Common Attack Vectors',
-        duration: '50 min',
-        description: 'Understanding how attackers gain access to systems',
+        title: 'Panorama de Ameaças Cibernéticas',
+        duration: '2.5 horas',
+        description: 'Tipos de ameaças e vetores de ataque modernos',
+        completed: true,
         content: [
-          'Social Engineering Attacks',
-          'Phishing and Spear Phishing',
-          'Malware Types: Viruses, Worms, Trojans, Ransomware',
-          'Network-based Attacks',
-          'Physical Security Breaches',
-          'Insider Threats'
+          'Malware e suas categorias',
+          'Ataques de Phishing e Social Engineering',
+          'Ameaças Persistentes Avançadas (APT)',
+          'Ransomware e Criptografia Maliciosa',
+          'Ataques a IoT e Sistemas Industriais'
         ],
         exercises: [
-          'Identify phishing emails from legitimate communications',
-          'Analyze malware samples (in sandboxed environment)',
-          'Create social engineering awareness scenarios'
+          'Analisar samples de phishing reais',
+          'Identificar características de APTs',
+          'Classificar tipos de malware'
         ]
       },
       {
         id: '1-3',
-        title: 'Authentication and Access Control',
-        duration: '40 min',
-        description: 'Securing access to systems and data',
+        title: 'Controles de Segurança',
+        duration: '3 horas',
+        description: 'Implementação de controles preventivos, detectivos e corretivos',
         content: [
-          'Authentication Factors: Something you know/have/are',
-          'Multi-Factor Authentication (MFA)',
-          'Role-Based Access Control (RBAC)',
-          'Principle of Least Privilege',
-          'Identity and Access Management (IAM)',
-          'Single Sign-On (SSO) Solutions'
+          'Tipos de controles de segurança',
+          'Firewalls e sistemas de detecção',
+          'Criptografia e PKI',
+          'Controle de acesso e identidade',
+          'Monitoramento e logging'
         ],
         exercises: [
-          'Configure MFA for various applications',
-          'Design RBAC matrix for organizational roles',
-          'Implement least privilege access policies'
+          'Configurar regras de firewall básicas',
+          'Implementar controles de acesso',
+          'Analisar logs de segurança'
         ]
       },
       {
@@ -261,6 +262,138 @@ const detailedCourses: DetailedCourse[] = [
   },
   {
     id: '2',
+    title: 'Análise de Malware Avançada',
+    description: 'Técnicas profissionais para identificação, análise estática e dinâmica de malware, incluindo engenharia reversa e sandbox analysis.',
+    level: 'intermediate',
+    duration: '10 semanas',
+    totalModules: 15,
+    enrolled: 892,
+    rating: 4.9,
+    progress: 25,
+    category: 'Malware Analysis',
+    instructor: 'Prof. Carlos Lima, GREM',
+    certification: 'Advanced Malware Analyst',
+    prerequisites: ['Conhecimento de sistemas operacionais', 'Programação básica', 'Redes de computadores'],
+    learningObjectives: [
+      'Realizar análise estática de malware',
+      'Executar análise dinâmica em sandbox',
+      'Utilizar ferramentas de engenharia reversa',
+      'Identificar familias de malware',
+      'Desenvolver assinaturas de detecção'
+    ],
+    modules: [
+      {
+        id: '2-1',
+        title: 'Introdução à Análise de Malware',
+        duration: '3 horas',
+        description: 'Fundamentos da análise de software malicioso',
+        completed: true,
+        content: [
+          'Tipos de malware e classificação',
+          'Ambientes seguros para análise',
+          'Ferramentas essenciais',
+          'Metodologia de análise',
+          'Precauções de segurança'
+        ],
+        exercises: [
+          'Configurar lab de análise isolado',
+          'Identificar malware por comportamento',
+          'Usar ferramentas básicas de análise'
+        ]
+      }
+    ]
+  },
+  {
+    id: '3',
+    title: 'Red Team Operations',
+    description: 'Operações ofensivas avançadas, teste de penetração, social engineering e simulação de APTs para fortalecimento da segurança organizacional.',
+    level: 'advanced',
+    duration: '12 semanas',
+    totalModules: 18,
+    enrolled: 654,
+    rating: 5.0,
+    locked: true,
+    category: 'Offensive Security',
+    instructor: 'Specialist Marcus Torres, OSCP, CRTO',
+    certification: 'Red Team Operator',
+    prerequisites: ['Conhecimento avançado em redes', 'Experiência em pentesting', 'Programação intermediária'],
+    learningObjectives: [
+      'Planejar operações red team complexas',
+      'Executar ataques multi-vetoriais',
+      'Simular APTs realísticas',
+      'Aplicar técnicas de social engineering',
+      'Desenvolver payloads customizados'
+    ],
+    modules: []
+  },
+  {
+    id: '4',
+    title: 'SOC Operations & Incident Response',
+    description: 'Operações de Centro de Segurança, detecção de ameaças, resposta a incidentes e análise forense digital para analistas SOC.',
+    level: 'intermediate',
+    duration: '9 semanas',
+    totalModules: 14,
+    enrolled: 1103,
+    rating: 4.7,
+    category: 'SOC Operations',
+    instructor: 'Dir. Patricia Santos, GCIH, GCFA',
+    certification: 'SOC Analyst Professional',
+    prerequisites: ['Fundamentos de segurança', 'Conhecimento de SIEM', 'Análise de logs'],
+    learningObjectives: [
+      'Operar ferramentas SIEM efetivamente',
+      'Detectar ameaças avançadas',
+      'Responder a incidentes de segurança',
+      'Realizar análise forense básica',
+      'Coordenar resposta a incidentes'
+    ],
+    modules: []
+  },
+  {
+    id: '5',
+    title: 'Cloud Security & DevSecOps',
+    description: 'Segurança em ambientes cloud (AWS, Azure, GCP), containerização, Kubernetes security e integração de segurança em DevOps.',
+    level: 'intermediate',
+    duration: '11 semanas',
+    totalModules: 16,
+    enrolled: 789,
+    rating: 4.85,
+    category: 'Cloud Security',
+    instructor: 'Eng. Rafael Costa, CCSP, CKS',
+    certification: 'Cloud Security Specialist',
+    prerequisites: ['Conhecimento de cloud', 'DevOps básico', 'Containerização'],
+    learningObjectives: [
+      'Implementar segurança em multi-cloud',
+      'Configurar Kubernetes security',
+      'Integrar security em CI/CD',
+      'Monitorar ambientes cloud',
+      'Aplicar compliance em cloud'
+    ],
+    modules: []
+  },
+  {
+    id: '6',
+    title: 'Forense Digital & Threat Hunting',
+    description: 'Investigação forense digital, coleta e análise de evidências, threat hunting ativo e técnicas de investigação cibernética.',
+    level: 'advanced',
+    duration: '10 semanas',
+    totalModules: 13,
+    enrolled: 567,
+    rating: 4.95,
+    category: 'Digital Forensics',
+    instructor: 'Perita Dra. Lucia Martins, EnCE, GCFA',
+    certification: 'Digital Forensics Expert',
+    prerequisites: ['Sistemas operacionais avançado', 'Redes', 'Conceitos jurídicos básicos'],
+    learningObjectives: [
+      'Conduzir investigações forenses',
+      'Coletar evidências digitais',
+      'Realizar threat hunting proativo',
+      'Analisar artefatos forenses',
+      'Documentar investigações legalmente'
+    ],
+    modules: []
+  },
+  {
+    id: '7',
     title: 'Advanced Threat Hunting',
     description: 'Advanced techniques for proactive threat hunting using SIEM, behavioral analysis, and threat intelligence.',
     level: 'advanced',

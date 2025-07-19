@@ -18,14 +18,11 @@ import { APP_PIPE } from '@nestjs/core'; // Para usar o ValidationPipe globalmen
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get<string>('DB_HOST'),
-        port: config.get<number>('DB_PORT'),
-        username: config.get<string>('DB_USERNAME'),
-        password: config.get<string>('DB_PASSWORD'),
-        database: config.get<string>('DB_DATABASE'),
+        type: 'better-sqlite3',
+        database: 'soc_platform.db',
         entities: [User], // Adicione sua entidade User aqui
         synchronize: true, // Apenas para desenvolvimento! Use migrations em produção.
+        autoLoadEntities: true,
       }),
     }),
     AuthModule,

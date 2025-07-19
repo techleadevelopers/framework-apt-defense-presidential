@@ -124,6 +124,15 @@
     scrollbar-color: var(--cyber-cyan) var(--cyber-navy); /* Para Firefox */
   }
 
+  /* Correção para cor do texto nos campos de entrada */
+  .cyber-input {
+    color: white !important;
+  }
+
+  .cyber-input::placeholder {
+    color: rgb(107, 114, 128) !important;
+  }
+
   /* Para navegadores baseados em Webkit (Chrome, Safari, Edge) */
   .futuristic-scrollbar::-webkit-scrollbar {
     width: 8px; /* Largura da barra de rolagem */

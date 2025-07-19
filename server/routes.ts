@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { insertThreatSchema, insertSecurityEventSchema } from "@shared/schema";
+import { insertThreatSchema, insertSecurityEventSchema, insertUserSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -45,6 +45,99 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }
 
   // API Routes
+  
+  // User Authentication Routes
+  app.post('/api/auth/register', async (req, res) => {
+    try {
+      const userData = insertUserSchema.parse(req.body);
+      
+      // Check if user already exists
+      const existingUser = await storage.getUserByUsername(userData.username);
+      if (existingUser) {
+        return res.status(400).json({ error: 'Usuário já existe' });
+      }
+      
+      // Create new user (password should be hashed in production)
+      const user = await storage.createUser(userData);
+      
+      // Don't return password in response
+      const { password, ...userResponse } = user;
+      
+      res.status(201).json({ 
+        message: 'Usuário criado com sucesso',
+        user: userResponse 
+      });
+    } catch (error) {
+      console.error('Registration error:', error);
+      res.status(400).json({ error: 'Dados inválidos para registro' });
+    }
+  });
+
+  app.post('/api/auth/login', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      const user = await storage.getUserByUsername(username);
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: 'Credenciais inválidas' });
+      }
+      
+      // Don't return password in response
+      const { password: _, ...userResponse } = user;
+      
+      res.json({ 
+        message: 'Login realizado com sucesso',
+        user: userResponse 
+      });
+    } catch (error) {
+      console.error('Login error:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+  });
+
+  // User profile and gamification routes
+  app.get('/api/user/:id', async (req, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+      }
+      
+      // Get user progress and achievements
+      const progress = await storage.getStudentProgress(userId);
+      const achievements = await storage.getStudentAchievements(userId);
+      const certifications = await storage.getStudentCertifications(userId);
+      
+      // Calculate total points from achievements
+      const totalPoints = achievements.reduce((sum, achievement) => {
+        const achievementData = storage.achievements.get(achievement.achievementId);
+        return sum + (achievementData?.points || 0);
+      }, 0);
+      
+      const { password, ...userResponse } = user;
+      
+      res.json({
+        user: userResponse,
+        gamification: {
+          totalPoints,
+          level: Math.floor(totalPoints / 100) + 1,
+          achievements: achievements.length,
+          certifications: certifications.length,
+          coursesCompleted: progress.filter(p => p.isCompleted).length,
+          totalCourses: progress.length
+        },
+        progress,
+        achievements,
+        certifications
+      });
+    } catch (error) {
+      console.error('User profile error:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+  });
+
   app.get('/api/threats', async (req, res) => {
     try {
       const severity = req.query.severity as string;
